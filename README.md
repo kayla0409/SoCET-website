@@ -8,7 +8,7 @@ Public website and simple officer admin for the SoCET club at UCLA. Mobile-first
 ## Start here (5 minutes)
 
 1. Read this README.
-2. Open [docs/PHASE-1-TASKS.md](docs/PHASE-1-TASKS.md) and find **this week's** section.
+2. **Right now the target is the [mini-plan](docs/MINI-PLAN.md): a working site by Fri Nov 6.** Work from it first. After that, use [docs/PHASE-1-TASKS.md](docs/PHASE-1-TASKS.md) and find **this week's** section.
 3. Pick an unclaimed task whose dependencies are done. Put your name in the **Owner** column and on the Asana task.
 4. Follow [CONTRIBUTING.md](CONTRIBUTING.md) to branch, open a PR, and get a review.
 5. Stuck on a missing fact (copy, logo, dates)? Check [docs/OPEN-QUESTIONS.md](docs/OPEN-QUESTIONS.md) before asking.
@@ -69,6 +69,7 @@ The TS-2 owner must update this section with the real commands.
 ├── CONTRIBUTING.md            how we work: branches, PRs, reviews, definition of done
 ├── .github/                   PR template, issue templates (CI workflows added in TS-3)
 └── docs/
+    ├── MINI-PLAN.md           two-week plan to a working site by Fri Nov 6, and what "passable" means
     ├── PLAN.md                phases, 8-week schedule, capacity, risks
     ├── PHASE-1-TASKS.md       task checklist by week (the working board)
     ├── OPEN-QUESTIONS.md      [TBD] tracker: facts officers must supply
