@@ -28,18 +28,26 @@ Phase 1 is **176 h** against a 180 h cap. Do not add scope to Phase 1. Put ideas
 
 Confirmed or changed by the architecture decision record in TS-1 (`docs/adr/`).
 
-| Concern | Choice |
-|---|---|
-| Framework | Next.js (App Router), TypeScript strict |
-| Styling | Tailwind with design tokens exported from Figma (JSON); in-repo primitives, shadcn/ui style |
-| Database | Postgres (staging + production, isolated) with Prisma migrations |
-| Auth | Auth.js email magic link, officer allowlist only in Phase 1, sent via Resend |
-| Validation | Zod on every server action and form |
-| Tests | Vitest (unit), Playwright + axe (e2e and accessibility), Lighthouse CI (Home budget) |
-| Hosting / CI | Vercel (preview per PR) + GitHub Actions |
-| Monitoring | Sentry free tier with PII scrubbing, cookieless analytics, uptime monitor |
-| Images | Object storage, validated upload, required alt text, `next/image` |
-| Bot protection | Honeypot + rate limit in Phase 1; CAPTCHA (Turnstile proposed) in Phase 2 |
+**This is one Next.js app, not two.** The frontend and backend live in the same repo and deploy together to Vercel. There is no separate API server. Pages are React components; backend logic runs on the server as Next.js server actions and route handlers.
+
+| Layer | Concern | Choice |
+|---|---|---|
+| **Frontend** | Framework | Next.js (App Router) with React, TypeScript strict |
+| | Styling | Tailwind with design tokens exported from Figma (JSON); in-repo primitives, shadcn/ui style |
+| | Images | `next/image`, required alt text |
+| **Backend** (inside the same Next.js app) | Server logic | Server actions and route handlers in `src/server` |
+| | Validation | Zod on every server action and form |
+| | Auth | Auth.js email magic link, officer allowlist only in Phase 1, sent via Resend |
+| | Bot protection | Honeypot + rate limit in Phase 1; CAPTCHA (Turnstile proposed) in Phase 2 |
+| **Data** | Database | Postgres (staging + production, isolated) with Prisma migrations |
+| | File storage | Object storage for team photos, validated upload |
+| | Email | Resend (magic links, officer notifications) |
+| **Infra and tooling** | Hosting | Vercel (preview per PR) |
+| | CI | GitHub Actions |
+| | Tests | Vitest (unit), Playwright + axe (e2e and accessibility), Lighthouse CI (Home budget) |
+| | Monitoring | Sentry free tier with PII scrubbing, cookieless analytics, uptime monitor |
+
+In the two-week mini-plan, the backend and data layers are skipped: pages read from a static data file. See [docs/MINI-PLAN.md](docs/MINI-PLAN.md).
 
 More detail in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
