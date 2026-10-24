@@ -115,6 +115,6 @@ Every task ID starts with its area. Name a lead per area so people know who to a
 
 ## Links
 
-- Asana project: "SOCET Website Build" (SoCET UCLA team, private)
+- Asana project: "SOCET Website Build" (SoCET UCLA team, private). Search tasks by ID (e.g. `TS-2`); start at `MP-0 READ FIRST` for the mini-plan
 - Design file: location is open question #45
 - Club contact: socet.ucla@gmail.com

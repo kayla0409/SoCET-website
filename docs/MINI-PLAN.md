@@ -4,6 +4,17 @@
 
 Assumes 3 developers at ~8 h/week, so about 48 h of team time. The list below is 47 h, which leaves almost no slack. If you are 2 developers, cut the Team page, Privacy page and FAQ accordion first.
 
+## Where to find these tasks in Asana
+
+The mini-plan reuses the existing Phase 1 task IDs, so there is no separate numbering.
+
+- **Start at `MP-0 READ FIRST`** in the "SOCET Website Build" project (first section, due Nov 6). It lists every mini-plan task with a link and repeats the acceptance checklist.
+- **Search by ID.** Task names begin with the ID, for example `TS-2` or `PD-3`. Type it into Asana search.
+- **Each reused task has a pinned comment** starting "MINI-PLAN version", saying what to do by Nov 6 and what to skip. The full task description still applies for the Phase 1 launch.
+- **One task is new:** `MP-1` (static content data, `getEvents()` and `getTeam()`).
+- **Dependencies:** a few tasks list BE-3, BE-4 or DC-4 as dependencies. Ignore those until the database and decision log exist; the pinned comment says so.
+- The repo docs deliberately don't contain Asana URLs. Search by ID instead.
+
 ## What "passable" means (acceptance checklist)
 
 The mini-plan is done when every box is true on the **deployed Vercel URL**:
