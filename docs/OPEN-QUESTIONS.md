@@ -6,8 +6,8 @@ Officers' answers block developers. For each item, fill **Owner** (who gets the 
 
 | # | Item | Collected in | Owner | Needed by | Status |
 |---|---|---|---|---|---|
-| 1 | Name styling: "SOCET" vs "SoCET" | DC-1.1 |  |  | open |
-| 2 | Positioning: environmental science vs clean energy / climate tech / sustainable innovation | DC-1.1 |  |  | open |
+| 1 | Name styling: "SOCET" vs "SoCET" | DC-1.1 | Samantha |  | answered: SoCET (decision-log.md) |
+| 2 | Positioning: environmental science vs clean energy / climate tech / sustainable innovation | DC-1.1 | Samantha |  | answered: clean energy and technology; one-liner pending Niteesh OK (decision-log.md) |
 | 3 | Primary audiences and numeric success-metric targets | DC-1.1, DC-1.2 |  |  | open |
 | 4 | Founding year | DC-3.1 |  |  | open |
 | 5 | Officer names, roles, bios, photos and written publishing consent | CP-2.1 |  |  | open |

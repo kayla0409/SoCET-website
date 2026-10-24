@@ -15,7 +15,7 @@ Milestone: decisions logged; repo, CI and preview deploys live.
 
 | Done | ID | Task | h | OI | Depends on | Owner | Actual h |
 |---|---|---|---|---|---|---|---|
-| [ ] | DC-1 | Confirm club identity, positioning, naming/styling, audience and success metrics | 4 | OI | none | | |
+| [x] | DC-1 | Confirm club identity, positioning, naming/styling, audience and success metrics (mini-plan version; see plan/decision-log.md) | 4 | OI | none | Samantha | |
 | [ ] | DC-2 | Audit existing channels and assets; Phase 1 content inventory | 4 | OI | none | | |
 | [ ] | DC-4 | Decide Phase 1 operations: admin access, join process, Partiful use, data and retention, budget. **DUE Oct 27** | 4 | OI | DC-1, TS-1 | | |
 | [ ] | TS-1 | Architecture decision record: stack, paid services with costs and fallbacks, diagram | 2 | | none | | |
