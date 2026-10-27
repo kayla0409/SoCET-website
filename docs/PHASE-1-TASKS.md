@@ -19,7 +19,7 @@ Milestone: decisions logged; repo, CI and preview deploys live.
 | [ ] | DC-2 | Audit existing channels and assets; Phase 1 content inventory | 4 | OI | none | | |
 | [ ] | DC-4 | Decide Phase 1 operations: admin access, join process, Partiful use, data and retention, budget. **DUE Oct 27** | 4 | OI | DC-1, TS-1 | | |
 | [ ] | TS-1 | Architecture decision record: stack, paid services with costs and fallbacks, diagram | 2 | | none | | |
-| [ ] | TS-2 | Repository, PR rules, ESLint/Prettier, TypeScript strict, test runners | 3 | | none | | |
+| [~] | TS-2 | Repository, PR rules, ESLint/Prettier, TypeScript strict, test runners | 3 | | none | Samantha | |
 | [ ] | TS-3 | CI/CD: GitHub Actions and Vercel preview deploys | 5 | | TS-2 | | |
 
 Start with: TS-1 and DC-1.1 (officer kickoff). DC-4 waits on both.
