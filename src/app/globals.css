@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+/* Placeholder theme. DS-1 tokens replace this. */
+:root {
+  --background: #ffffff;
+  --foreground: #0f1c2a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b1620;
+    --foreground: #e6edf3;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
