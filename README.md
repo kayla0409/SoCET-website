@@ -53,21 +53,18 @@ More detail in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Getting set up locally
 
-The scaffold is created in TS-2 (week 1). Once it lands, this section is the source of truth. Expected shape:
+Requires Node 22.12 or newer (see `.nvmrc`).
 
 ```bash
 git clone https://github.com/kayla0409/SoCET-website.git
 cd SoCET-website
-cp .env.example .env.local      # fill in values; never commit .env.local
 npm install
-npx prisma migrate dev          # local database
-npm run seed                    # fake data only, no real PII
 npm run dev                     # http://localhost:3000
 ```
 
-Checks that CI also runs: `npm run lint`, `npm run typecheck`, `npm test`, `npm run e2e`.
+Checks to run before opening a PR (CI will run the same once TS-3 lands): `npm run lint`, `npm run typecheck`, `npm test`, `npm run format:check`.
 
-The TS-2 owner must update this section with the real commands.
+There is no database yet. Events live in `src/content/events.ts` and pages read them through `getEvents()` in `src/server/content.ts`. A database (TS-4, BE-1) and `.env.example` come later.
 
 ## Repository map
 
