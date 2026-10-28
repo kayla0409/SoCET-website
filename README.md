@@ -59,10 +59,14 @@ Requires Node 22.12 or newer (see `.nvmrc`).
 git clone https://github.com/kayla0409/SoCET-website.git
 cd SoCET-website
 npm install
+npx playwright install chromium # once, for the end-to-end tests
 npm run dev                     # http://localhost:3000
 ```
 
-Checks to run before opening a PR (CI will run the same once TS-3 lands): `npm run lint`, `npm run typecheck`, `npm test`, `npm run format:check`.
+Checks to run before opening a PR (CI will run the same once TS-3 lands): `npm run lint`, `npm run typecheck`, `npm test`, `npm run e2e`, `npm run format:check`.
+
+- `npm test` runs Vitest unit and component tests (`src/**/*.test.ts(x)`).
+- `npm run e2e` runs Playwright browser tests (`e2e/`) on a phone and a desktop viewport. It starts the dev server for you, or reuses one already running on port 3000. Set `PLAYWRIGHT_BASE_URL` to test a deployed site instead.
 
 There is no database yet; TS-4 and BE-1 add it, along with `.env.example`.
 
@@ -83,7 +87,7 @@ There is no database yet; TS-4 and BE-1 add it, along with `.env.example`.
     └── plan/full-outline.md   the original full outline: all 326 tasks/subtasks with goals
 ```
 
-Planned code layout (created in TS-2, adjust in the ADR): `src/app` routes, `src/components` UI primitives and sections, `src/server` actions, queries and auth helpers, `prisma/` schema, migrations and seed, `tests/` e2e.
+Planned code layout (created in TS-2, adjust in the ADR): `src/app` routes, `src/components` UI primitives and sections, `src/server` actions, queries and auth helpers, `prisma/` schema, migrations and seed, `e2e/` Playwright tests.
 
 ## Work areas and owners
 
