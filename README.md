@@ -64,7 +64,7 @@ npm run dev                     # http://localhost:3000
 
 Checks to run before opening a PR (CI will run the same once TS-3 lands): `npm run lint`, `npm run typecheck`, `npm test`, `npm run format:check`.
 
-There is no database yet; TS-4 and BE-1 add it, along with `.env.example`.
+There is no database yet. Events live in `src/content/events.ts` and pages read them through `getEvents()` in `src/server/content.ts`. A database (TS-4, BE-1) and `.env.example` come later.
 
 ## Repository map
 

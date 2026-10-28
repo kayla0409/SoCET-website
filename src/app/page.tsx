@@ -1,9 +1,15 @@
-// Placeholder until the home page (PD-1) lands.
+import { Hero } from "@/components/home/Hero";
+import { MailingList } from "@/components/home/MailingList";
+import { Pillars } from "@/components/home/Pillars";
+import { UpcomingEvents } from "@/components/home/UpcomingEvents";
+
 export default function Home() {
   return (
-    <main className="mx-auto max-w-2xl flex-1 px-4 py-24 text-center">
-      <h1 className="text-3xl font-bold">SoCET at UCLA</h1>
-      <p className="mt-4">Our new site is under construction.</p>
-    </main>
+    <>
+      <Hero />
+      <UpcomingEvents />
+      <Pillars />
+      <MailingList />
+    </>
   );
 }

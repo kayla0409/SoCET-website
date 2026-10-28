@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
-/* Placeholder theme. DS-1 tokens replace this. */
+/*
+ * Interim tokens until DS-1 lands. UCLA blue and gold, echoing the club's
+ * current Google Site. Every text pair here meets WCAG AA in its theme.
+ */
 :root {
   --background: #ffffff;
   --foreground: #0f1c2a;
+  --muted: #4a5a6a;
+  --surface: #ffffff;
+  --surface-alt: #f2f6fa;
+  --border: #d5dee8;
+  --accent: #005587;
+  --accent-soft: #e3eef7;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0b1620;
     --foreground: #e6edf3;
+    --muted: #a5b4c3;
+    --surface: #12212e;
+    --surface-alt: #0f1d29;
+    --border: #24394b;
+    --accent: #ffd100;
+    --accent-soft: #1c3346;
   }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+@theme {
+  --color-ucla-blue: #2774ae;
+  --color-ucla-blue-dark: #005587;
+  --color-ucla-blue-darkest: #003b5c;
+  --color-ucla-gold: #ffd100;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ucla-gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
