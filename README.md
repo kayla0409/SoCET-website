@@ -66,7 +66,7 @@ npm run dev                     # http://localhost:3000
 Checks to run before opening a PR (CI will run the same once TS-3 lands): `npm run lint`, `npm run typecheck`, `npm test`, `npm run e2e`, `npm run format:check`.
 
 - `npm test` runs Vitest unit and component tests (`src/**/*.test.ts(x)`).
-- `npm run e2e` runs Playwright browser tests (`e2e/`) on a phone and a desktop viewport. It starts the dev server for you, or reuses one already running on port 3000. Set `PLAYWRIGHT_BASE_URL` to test a deployed site instead.
+- `npm run e2e` runs Playwright browser tests (`e2e/`) on a phone and a desktop viewport, including an axe accessibility scan of each page in light and dark mode. Add new pages to the `routes` list in `e2e/accessibility.spec.ts`. It starts the dev server for you, or reuses one already running on port 3000. Set `PLAYWRIGHT_BASE_URL` to test a deployed site instead.
 
 There is no database yet; TS-4 and BE-1 add it, along with `.env.example`.
 

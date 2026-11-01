@@ -1,0 +1,25 @@
+# Dependabot opens PRs to update dependencies, batched weekly so they don't
+# flood the PR list. Security fixes arrive right away once Dependabot alerts
+# and security updates are turned on in the repo's Settings (admin only).
+# Every Dependabot PR still needs CI and a review to merge.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      # One PR for all minor and patch updates; majors arrive one at a time.
+      minor-and-patch:
+        update-types: [minor, patch]
+    commit-message:
+      prefix: chore(deps)
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: ci(deps)
