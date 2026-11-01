@@ -1,4 +1,7 @@
+import { getMailchimpConfig } from "@/lib/mailchimp";
 import { site, socialLinks } from "@/lib/site";
+import { joinMailingList } from "@/server/mailing-list";
+import { MailingListForm } from "./MailingListForm";
 
 export function MailingList() {
   return (
@@ -17,12 +20,17 @@ export function MailingList() {
           Join the mailing list for event invites, site-tour sign-ups and club
           news. Open to every UCLA student, any major.
         </p>
-        <a
-          href={site.joinFormUrl}
-          className="mt-8 rounded-full border-2 border-ucla-gold px-8 py-3 font-semibold text-ucla-gold transition hover:bg-ucla-gold hover:text-ucla-blue-darkest"
-        >
-          Join the mailing list
-        </a>
+        {/* Until the Mailchimp keys are set, fall back to the club's Google Form. */}
+        {getMailchimpConfig() ? (
+          <MailingListForm action={joinMailingList} />
+        ) : (
+          <a
+            href={site.joinFormUrl}
+            className="mt-8 rounded-full border-2 border-ucla-gold px-8 py-3 font-semibold text-ucla-gold transition hover:bg-ucla-gold hover:text-ucla-blue-darkest"
+          >
+            Join the mailing list
+          </a>
+        )}
         <p className="mt-8 text-sm text-white/90">
           Or find us on{" "}
           {socialLinks.map((link, index) => (
