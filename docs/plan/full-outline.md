@@ -1,6 +1,6 @@
-# SOCET Website Build — Implementation Outline v3 (three releases)
+# SOCET Website Build — Implementation Outline v3 (three releases; DRAFT, not yet in Asana)
 
-Status: approved and created in Asana on 2026-10-20 (see "Asana status" at the bottom). This file is the reference copy of the plan. Task IDs and task names are retained as the stable links to Asana.
+Status: approved and created in Asana on 2026-10-20 (see "Asana status" at the bottom). This file is the reference copy of the plan.
 
 ## Releases
 
@@ -24,9 +24,7 @@ Status: approved and created in Asana on 2026-10-20 (see "Asana status" at the b
 | Due dates | **Approved:** each Phase 1 week's final task gets that week's end date (8 tasks, listed in the week plan; LA-2 carries the Dec 15 launch date). No other task or subtask gets a due date. Phase 2 and Phase 3 have no due dates (the quarter plan is for guidance only) |
 | Assignees | None |
 | Team assumption | 2–3 student developers working part-time (~8 h/week each). (c) was not provided |
-| Stack | One Next.js App Router app with React and strict TypeScript; Tailwind and Figma JSON design tokens; server actions and route handlers in `src/server`; Zod validation; Auth.js officer magic links via Resend; isolated Postgres databases with Prisma; object storage for photos; Vercel hosting and previews; GitHub Actions; Vitest, Playwright + axe, Lighthouse CI Home budget; Sentry with PII scrubbing, cookieless analytics and uptime monitoring |
-
-The frontend and backend are parts of this same application and deploy together to Vercel. Do not create a separate API server. Turnstile is proposed for Phase 2; Phase 1 uses a honeypot and rate limiting.
+| Stack | See [ADR-0001](../adr/0001-stack.md). Older subtask text below still says Prisma (TS-4.1) and Auth.js (BE-2.1); read those as Supabase migrations and Supabase Auth. Task IDs and names are unchanged so they match Asana |
 
 ## Totals
 
@@ -234,19 +232,19 @@ Goal: Pixel-level specs for Phase 2, approved in writing.
 #### Phase 1 — 7 tasks, 13 subtasks, 30 h
 
 **TS-1 Architecture decision record: stack, paid services with costs and free-tier fallbacks, diagram** — [P1]  ·  2 h  ·  depends on: None  ·  **Week:** 1  
-Goal: Record the selected stack, its cost and who owns each account.
+Goal: Record the stack, its cost and who owns each account.
 
 | ID | Subtask | Labels | Goal | h | Depends on |
 |---|---|---|---|---|---|
 | TS-1.1 | ADR: stack choices, paid-service cost table with fallbacks, simple system diagram, club-owned accounts | [P1] | One merged ADR future officers can read. | 2 | None |
 
 **TS-2 Repository, PR rules, ESLint/Prettier, TypeScript strict, test runners** — [P1]  ·  3 h  ·  depends on: None  ·  **Week:** 1  
-Goal: Same guardrails for every contributor from commit one in the single Next.js app.
+Goal: Same guardrails for every contributor from commit one.
 
 | ID | Subtask | Labels | Goal | h | Depends on |
 |---|---|---|---|---|---|
-| TS-2.1 | Next.js App Router + TS strict scaffold, ESLint/Prettier, branch protection (CI + 1 review), PR template | [P1] | One app scaffold with enforced PR rules; no separate server. | 2 | None |
-| TS-2.2 | Vitest and Playwright set up with one passing example each | [P1] | Both runners work locally and in GitHub Actions CI. | 1 | TS-2.1 |
+| TS-2.1 | Next.js App Router + TS strict scaffold, ESLint/Prettier, branch protection (CI + 1 review), PR template | [P1] | Repo with enforced PR rules. | 2 | None |
+| TS-2.2 | Vitest and Playwright set up with one passing example each | [P1] | Both runners work locally and in CI. | 1 | TS-2.1 |
 
 **TS-3 CI/CD: GitHub Actions and Vercel preview deploys** — [P1]  ·  5 h  ·  depends on: TS-2  ·  **Week:** 1  
 Goal: Block broken changes automatically and preview every PR.
@@ -254,21 +252,21 @@ Goal: Block broken changes automatically and preview every PR.
 | ID | Subtask | Labels | Goal | h | Depends on |
 |---|---|---|---|---|---|
 | TS-3.1 | Actions: lint, typecheck, unit; Vercel preview per PR and production branch | [P1] | Every PR gets checks and a preview URL. | 3 | None |
-| TS-3.2 | Playwright e2e with axe checks against the preview; Lighthouse CI budget on Home | [P1] | A11y violations and Home budget misses fail CI. | 2 | TS-3.1 |
+| TS-3.2 | Playwright e2e with axe checks against the preview; Lighthouse CI budget on Home | [P1] | A11y violations and budget misses fail CI. | 2 | TS-3.1 |
 
 **TS-4 Environments: staging and production databases, secrets, migrations, seed** — [P1]  ·  3 h  ·  depends on: TS-1, TS-3  ·  **Week:** 2  
 Goal: Test without ever touching production data.
 
 | ID | Subtask | Labels | Goal | h | Depends on |
 |---|---|---|---|---|---|
-| TS-4.1 | Staging + production Postgres, Vercel env secrets, .env.example, Prisma migrate workflow, guarded seed | [P1] | Two isolated databases with versioned migrations; previews use staging, never production. | 3 | None |
+| TS-4.1 | Staging + production Postgres, Vercel env secrets, .env.example, Prisma migrate workflow, guarded seed | [P1] | Two isolated environments with versioned migrations. | 3 | None |
 
 **TS-5 Base layout, nav, footer, dark mode, primitives, SEO/OG metadata, favicon** — [P1]  ·  12 h  ·  depends on: TS-2, DS-1, DS-2  ·  **Week:** 3  ·  **Due: 2026-11-10**  
 Goal: Build the shell and components every Phase 1 page reuses.
 
 | ID | Subtask | Labels | Goal | h | Depends on |
 |---|---|---|---|---|---|
-| TS-5.1 | Tailwind theme from tokens, fonts, dark mode with system preference and no flash | [P1] | Import Figma-exported JSON tokens into Tailwind; theme never flashes. | 3 | None |
+| TS-5.1 | Tailwind theme from tokens, fonts, dark mode with system preference and no flash | [P1] | Tokens live in code; theme never flashes. | 3 | None |
 | TS-5.2 | Accessible header, mobile nav, footer with social links, skip link, landmarks | [P1] | Keyboard and screen-reader friendly shell. | 3 | TS-5.1 |
 | TS-5.3 | In-house primitives: button, input, form field with errors, card, badge, toast | [P1] | shadcn/ui-style primitives owned in the repo. | 4 | TS-5.1 |
 | TS-5.4 | SEO baseline: metadata, default OG image, favicon, sitemap, robots | [P1] | Every route has valid metadata by default. | 2 | TS-5.1 |
@@ -278,7 +276,7 @@ Goal: Know about errors and outages from day one, without tracking people.
 
 | ID | Subtask | Labels | Goal | h | Depends on |
 |---|---|---|---|---|---|
-| TS-6.1 | Sentry free tier with PII scrubbing, cookieless analytics, uptime monitor on a health route | [P1] | Errors and downtime alert a named [TBD] channel without collecting unnecessary personal data. | 2 | None |
+| TS-6.1 | Sentry free tier with PII scrubbing, cookieless analytics, uptime monitor on a health route | [P1] | Errors and downtime alert a named [TBD] channel. | 2 | None |
 
 **TS-7 Domain, DNS, HTTPS ([TBD] domain)** — [P1] [Officer input]  ·  3 h  ·  depends on: TS-3  ·  **Week:** 7  
 Goal: Serve the site on a club-owned domain over HTTPS.
@@ -319,7 +317,7 @@ Goal: Model only Phase 1 data, with constraints.
 | BE-1.1 | Schema: officer users/roles, events (type, times, location, Partiful URL), team members, submissions, newsletter signups, created/updated-by | [P1] | Migration applied to staging; constraints in place. | 3 | None |
 
 **BE-2 Officer-only authentication and server-side role checks** — [P1]  ·  5 h  ·  depends on: BE-1  ·  **Week:** 3  
-Goal: Only allowlisted officers can reach admin actions in the Next.js app.
+Goal: Only allowlisted officers can reach admin actions.
 
 | ID | Subtask | Labels | Goal | h | Depends on |
 |---|---|---|---|---|---|
@@ -331,8 +329,8 @@ Goal: Let officers manage events and visitors browse them.
 
 | ID | Subtask | Labels | Goal | h | Depends on |
 |---|---|---|---|---|---|
-| BE-3.1 | Event CRUD server actions with Zod (incl. Partiful RSVP URL) | [P1] | Validated create/edit/delete in the Next.js app; no separate API service. | 3 | None |
-| BE-3.2 | Public queries: upcoming/past and type filter | [P1] | In-app server queries PD-3 and IF-1 consume. | 2 | BE-3.1 |
+| BE-3.1 | Event CRUD server actions with Zod (incl. Partiful RSVP URL) | [P1] | Validated create/edit/delete. | 3 | None |
+| BE-3.2 | Public queries: upcoming/past and type filter | [P1] | Server queries PD-3 and IF-1 consume. | 2 | BE-3.1 |
 
 **BE-4 Team CRUD and simple image upload** — [P1]  ·  5 h  ·  depends on: BE-1, BE-2  ·  **Week:** 4  
 Goal: Let officers manage team profiles with photos safely.
@@ -340,16 +338,16 @@ Goal: Let officers manage team profiles with photos safely.
 | ID | Subtask | Labels | Goal | h | Depends on |
 |---|---|---|---|---|---|
 | BE-4.1 | Team members CRUD with ordering and Zod | [P1] | Validated CRUD plus sort order. | 2 | None |
-| BE-4.2 | Image upload to object storage: type/size validation, required alt text, Next/Image optimization | [P1] | Upload validation runs server-side; safe images are optimized with `next/image`. | 3 | None |
+| BE-4.2 | Image upload to object storage: type/size validation, required alt text, Next/Image optimization | [P1] | Safe uploads; no image without alt text. | 3 | None |
 
 **BE-5 Join, newsletter and contact forms stored in the database** — [P1]  ·  7 h  ·  depends on: BE-1, DC-4  ·  **Week:** 4  
 Goal: Collect only approved fields safely and tell officers about new messages.
 
 | ID | Subtask | Labels | Goal | h | Depends on |
 |---|---|---|---|---|---|
-| BE-5.1 | Handlers with Zod; store submissions and newsletter signups with consent text and timestamp | [P1] | Next.js server actions validate with Zod and store only DC-4.1-approved fields. | 3 | None |
+| BE-5.1 | Handlers with Zod; store submissions and newsletter signups with consent text and timestamp | [P1] | Only DC-4.1 fields stored. | 3 | None |
 | BE-5.2 | Honeypot and rate limiting on all public forms and sign-in | [P1] | Bots and floods are rejected. | 2 | None |
-| BE-5.3 | Officer notification email for join and contact submissions | [P1] | Officers receive a Resend email per submission. | 2 | BE-5.1 |
+| BE-5.3 | Officer notification email for join and contact submissions | [P1] | Officers get an email per submission. | 2 | BE-5.1 |
 
 **BE-6 Phase 1 integration tests and seed data** — [P1]  ·  3 h  ·  depends on: BE-3, BE-4, BE-5  ·  **Week:** 7  
 Goal: Prove Phase 1 backend works end to end.

@@ -2,8 +2,6 @@
 
 The working checklist. Tasks are grouped by week; work top to bottom within a week. Update this file in the same PR that finishes a task (tick the box, fill **Owner**, log actual hours).
 
-Backend and data tasks are server-side features of the Next.js app, not work for a separate API server. Keep all existing task IDs and names when updating this board.
-
 - **OI** = needs officer input (book officer time early).
 - **Depends on** lists task IDs that must be done first. Full goals, in/out of scope and definition of done: [plan/full-outline.md](plan/full-outline.md) and the Asana task.
 - Due dates exist only on the last task of each week (marked **DUE**).

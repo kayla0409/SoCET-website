@@ -24,31 +24,32 @@ Public website and simple officer admin for the SoCET club at UCLA. Mobile-first
 
 Phase 1 is **176 h** against a 180 h cap. Do not add scope to Phase 1. Put ideas in the Phase 3 backlog.
 
-## Planned stack
+## Stack
 
-The selected stack is recorded in TS-1; the ADR will capture implementation details, costs and fallbacks.
+Why we chose each piece, what we rejected, costs and who owns each account: [ADR-0001](docs/adr/0001-stack.md) (proposed, awaiting team sign-off).
 
-**This is one Next.js app, not two.** The frontend and backend live in the same repo and deploy together to Vercel. There is no separate API server. Pages are React components; backend logic runs on the server through Next.js server-side functionality.
+**This is one Next.js app, not two.** Frontend and server code live in this repo and deploy together to Vercel. There is no separate API server.
 
-| Layer | Concern | Choice |
-|---|---|---|
-| **Frontend** | Framework | Next.js (React), frontend and backend in one application |
-| | Language | TypeScript, for type-safe development |
-| | Styling | Tailwind CSS, for responsive styling |
-| | Design | Figma, for UI/UX design and prototyping |
-| **Backend** (inside the same Next.js app) | Server logic | Next.js server-side functionality for newsletter signup, membership registration, and email forms; no separate backend needed |
-| | Email forms | Resend, sends "Build With Us" submissions to the club email |
-| **Data** | Database | Supabase (hosted PostgreSQL), stores membership information and scales as the club grows |
-| | Database vs. host | PostgreSQL is the database itself; Supabase is the service that hosts it in the cloud and makes it easier to manage |
-| | Connection | The Next.js site connects to the database through APIs |
-| | Why not Google Sheets | A database prevents duplicate emails for us, and relational tables can link to each other |
-| **Integrations** | Events calendar | Google Calendar embed, automatically displays upcoming club events |
-| | Newsletter | Mailchimp, automatically manages newsletter subscriptions |
-| | Community | Discord invite link, directs visitors to the club's Discord server |
-| **Infra and tooling** | Hosting | Vercel, a cloud hosting and deployment platform optimized for Next.js with minimal configuration |
-| | Version control | Git + GitHub, for team collaboration and code management |
+| Layer | Concern | Choice | Why |
+|---|---|---|---|
+| **Frontend** | Framework | Next.js App Router (React), strict TypeScript | One app and one deploy for a small, rotating team |
+| | Styling and design | Tailwind CSS, tokens from Figma | Fast responsive styling; consistent light and dark mode |
+| | Images | `next/image`, alt text required | Optimized images; accessibility |
+| **Server** (same app) | Server logic | Server actions or route handlers in `src/server` | API keys and personal data stay on the server |
+| | Validation | Zod on every server action and form | Same checks on every input |
+| | Officer login | Supabase Auth magic links, officer allowlist | Comes with Supabase; no passwords |
+| | Email | Resend: login emails and officer notifications | Reliable delivery, free tier |
+| **Data** | Database | Supabase (hosted Postgres), separate staging and production projects | Unlike Google Sheets, it rejects duplicate emails and links tables; also gives us login and photo storage |
+| | Officer access | Small admin page (IF-3), not the Supabase dashboard | Limits what officers can change; easier to hand over |
+| **Integrations** | Events | Public "SoCET Events" Google Calendar, read by `getEvents()` into our own calendar component (no iframe) | Officers just edit Google Calendar; keeps our styling, dark mode and privacy |
+| | Newsletter | Mailchimp, double opt-in | Officers send newsletters without a developer |
+| | Community | Discord invite link | Where members already are |
+| **Infra and tooling** | Hosting | Vercel, preview per PR | Built for Next.js, free tier |
+| | Version control and CI | Git, GitHub, GitHub Actions | Every PR is checked before merge |
+| | Tests | Vitest (unit); Playwright + axe (e2e and accessibility); Lighthouse CI Home budget planned (TS-3.2) | Catch broken pages and accessibility regressions |
+| | Monitoring | Sentry with PII scrubbing, cookieless analytics, uptime monitor (TS-6) | Find errors without tracking visitors |
 
-In the two-week mini-plan, database-backed features are deferred: pages read from a static data file inside this same Next.js app. There is no separate API server. See [docs/MINI-PLAN.md](docs/MINI-PLAN.md).
+In the two-week mini-plan, the database is skipped: pages read from a static data file. See [docs/MINI-PLAN.md](docs/MINI-PLAN.md).
 
 More detail in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
@@ -64,12 +65,12 @@ npx playwright install chromium # once, for the end-to-end tests
 npm run dev                     # http://localhost:3000
 ```
 
-Checks to run before opening a PR: `npm run lint`, `npm run typecheck`, `npm test`, `npm run e2e`, `npm run format:check`, and `npm run build`. GitHub Actions runs lint, typecheck, formatting, unit tests and build; browser tests are included when the Playwright configuration is present. The target CI suite also includes axe checks and a Lighthouse CI Home budget.
+Checks to run before opening a PR: `npm run lint`, `npm run typecheck`, `npm test`, `npm run e2e`, `npm run format:check`, and `npm run build`. GitHub Actions runs all of these on every PR, including the Playwright tests and axe accessibility scans. A Lighthouse CI Home budget is still to be added (TS-3.2).
 
 - `npm test` runs Vitest unit and component tests (`src/**/*.test.ts(x)`).
 - `npm run e2e` runs Playwright browser tests (`e2e/`) on a phone and a desktop viewport, including an axe accessibility scan of each page in light and dark mode. Add new pages to the `routes` list in `e2e/accessibility.spec.ts`. It starts the dev server for you, or reuses one already running on port 3000. Set `PLAYWRIGHT_BASE_URL` to test a deployed site instead.
 
-Postgres, Prisma, Auth.js and the email/storage integrations are planned but not wired into the current scaffold. TS-4 and BE-1 establish isolated staging/production databases and migrations; add required environment variables to `.env.example`.
+There is no database yet. Events live in `src/content/events.ts` and pages read them through `getEvents()` in `src/server/content.ts`. Supabase (TS-4, BE-1) comes later; add any new environment variables to `.env.example` with a dummy value.
 
 ## Repository map
 
@@ -84,11 +85,11 @@ Postgres, Prisma, Auth.js and the email/storage integrations are planned but not
     ├── PHASE-1-TASKS.md       task checklist by week (the working board)
     ├── OPEN-QUESTIONS.md      [TBD] tracker: facts officers must supply
     ├── ARCHITECTURE.md        stack, data model, security and privacy rules
-    ├── adr/                   architecture decision records (TS-1 writes the first)
+    ├── adr/                   architecture decision records (0001: stack and why)
     └── plan/full-outline.md   the original full outline: all 326 tasks/subtasks with goals
 ```
 
-Code layout: `src/app` routes and layouts, `src/components` UI primitives and sections, `src/server` server actions, route handlers, queries and auth helpers, `prisma/` schema/migrations/seed, and `e2e/` Playwright tests. These are parts of one Next.js app and deploy together to Vercel.
+Code layout: `src/app` routes and layouts, `src/components` UI primitives and sections, `src/server` server actions, route handlers, queries and auth helpers, `supabase/` migrations and seed (added in TS-4), and `e2e/` Playwright tests.
 
 ## Work areas and owners
 

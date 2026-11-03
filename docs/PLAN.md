@@ -2,8 +2,6 @@
 
 Source: the full outline in [plan/full-outline.md](plan/full-outline.md). This page is the readable summary. The day-to-day board is [PHASE-1-TASKS.md](PHASE-1-TASKS.md).
 
-The frontend and backend are one Next.js App Router app deployed together to Vercel. Server actions and route handlers run within that app; there is no separate API server. See [ARCHITECTURE.md](ARCHITECTURE.md) for the selected stack.
-
 ## Releases
 
 | Release | Window | Hours |
