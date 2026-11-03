@@ -24,7 +24,7 @@ Status: approved and created in Asana on 2026-10-20 (see "Asana status" at the b
 | Due dates | **Approved:** each Phase 1 week's final task gets that week's end date (8 tasks, listed in the week plan; LA-2 carries the Dec 15 launch date). No other task or subtask gets a due date. Phase 2 and Phase 3 have no due dates (the quarter plan is for guidance only) |
 | Assignees | None |
 | Team assumption | 2–3 student developers working part-time (~8 h/week each). (c) was not provided |
-| Stack | No changes |
+| Stack | See [ADR-0001](../adr/0001-stack.md). Older subtask text below still says Prisma (TS-4.1) and Auth.js (BE-2.1); read those as Supabase migrations and Supabase Auth. Task IDs and names are unchanged so they match Asana |
 
 ## Totals
 

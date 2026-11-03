@@ -65,5 +65,7 @@ Officers' answers block developers. For each item, fill **Owner** (who gets the 
 | 52 | How long the newsletter confirmation link stays valid | BE-12.2, IF-13.2 |  |  | open |
 | 53 | CAPTCHA provider (Cloudflare Turnstile proposed) and the Vercel plan, which limits how often cron jobs run | BE-12.4, BE-13.5, BE-14.4, DC-5.6 |  |  | open |
 | 54 | Phase 3 items: photo policy (P3-3); speaker-inquiry retention (P3-4); social account type and API token owner (P3-5); directory fields and whether non-UCLA alumni can join (P3-6); officer positions, selection process and application retention (P3-7); points rules (P3-8); Discord admin and bot approval (P3-9); which datasets (P3-10); translators (P3-11); how many epics to promote (PH-7.1) | P3-3 to P3-11, PH-7.1 |  |  | open |
+| 55 | New scope from the stack diagram: a "Build With Us" project-idea form, membership registration beyond the Join form, a Projects page (Phase 2, PD-8) and a Resources page (Phase 3). Add as tasks or leave out of Phase 1? | ADR-0001 | Niteesh |  | open |
+| 56 | Create a public "SoCET Events" Google Calendar under the club account (the current club calendar only shows "Busy" publicly), and who keeps it up to date | ADR-0001, BE-3 |  |  | open |
 
 Item 54 (Phase 3 policy questions) is not needed before Phase 3 is promoted.
