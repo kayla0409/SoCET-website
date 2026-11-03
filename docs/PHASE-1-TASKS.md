@@ -55,7 +55,7 @@ Milestone: events, team and forms backend done; Home on preview.
 | [ ] | BE-3 | Events API: CRUD and public queries | 5 | | BE-1, BE-2 | | |
 | [ ] | BE-4 | Team CRUD and simple image upload | 5 | | BE-1, BE-2 | | |
 | [ ] | BE-5 | Join, newsletter and contact forms stored in the database | 7 | | BE-1, DC-4 | | |
-| [ ] | PD-1 | Home page. **DUE Nov 17** | 5 | | TS-5, BE-3, DS-3, DC-3 | | |
+| [~] | PD-1 | Home page. **DUE Nov 17** | 5 | | TS-5, BE-3, DS-3, DC-3 | Samantha | |
 
 ## Week 5: Nov 18 to 24 (22 h)
 

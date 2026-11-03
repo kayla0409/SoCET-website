@@ -68,7 +68,7 @@ Checks to run before opening a PR (CI will run the same once TS-3 lands): `npm r
 - `npm test` runs Vitest unit and component tests (`src/**/*.test.ts(x)`).
 - `npm run e2e` runs Playwright browser tests (`e2e/`) on a phone and a desktop viewport. It starts the dev server for you, or reuses one already running on port 3000. Set `PLAYWRIGHT_BASE_URL` to test a deployed site instead.
 
-There is no database yet; TS-4 and BE-1 add it, along with `.env.example`.
+There is no database yet. Events live in `src/content/events.ts` and pages read them through `getEvents()` in `src/server/content.ts`. A database (TS-4, BE-1) and `.env.example` come later.
 
 ## Repository map
 
