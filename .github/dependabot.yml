@@ -16,6 +16,12 @@ updates:
         update-types: [minor, patch]
     commit-message:
       prefix: chore(deps)
+    ignore:
+      # @types/node must match the Node version we run on (.nvmrc, engines).
+      # Newer majors would let code use APIs that crash on our runtime. When
+      # we upgrade Node, bump .nvmrc, engines, Vercel and @types/node together.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: /
