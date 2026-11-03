@@ -78,7 +78,7 @@ We are 2 to 3 part-time student developers (about 8 h/week each) building a club
 | Service | Free tier we rely on | What happens if we outgrow it | Paid fallback |
 |---|---|---|---|
 | Vercel (Hobby) | Hosting, preview per PR, daily cron | Hobby plan is for non-commercial use; fine for a student club site | Pro, \$20/month per member |
-| Supabase | 2 projects, 500 MB database, 1 GB storage, 50,000 auth users; pauses after ~7 days idle | Project pauses or hits the size cap | Pro, \$25/month; or move to Neon (free) |
+| Supabase | 2 active projects per organization (staging and production use both, so there is no room for a third, e.g. per-PR databases), 500 MB database, 1 GB storage, 50,000 auth users; pauses after ~7 days idle | Project pauses or hits the size cap; a third project can't be created | Pro, \$25/month; or move to Neon (free) |
 | Resend | 3,000 emails/month, 100/day | Emails stop for the rest of the day or month | Pro, \$20/month |
 | Mailchimp | About 500 contacts, 1,000 sends/month | Can't add contacts or send | Paid plans from about \$13/month |
 | Google Calendar | Free | n/a | n/a |
