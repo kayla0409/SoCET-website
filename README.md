@@ -2,7 +2,7 @@
 
 Public website and simple officer admin for the SoCET club at UCLA. Mobile-first, accessible (WCAG AA), cheap to run, and easy to hand to the next set of officers.
 
-> **Status:** planning complete, code not started. Phase 1 launches **Tue Dec 15, 2026** (8 weeks from Oct 21).
+> **Status:** Next.js app scaffold is in place; Phase 1 integrations and pages are in progress. Target launch: **Tue Dec 15, 2026**.
 > **New here? Read [Start here](#start-here-5-minutes) below.**
 
 ## Start here (5 minutes)
@@ -26,7 +26,7 @@ Phase 1 is **176 h** against a 180 h cap. Do not add scope to Phase 1. Put ideas
 
 ## Planned stack
 
-Confirmed or changed by the architecture decision record in TS-1 (`docs/adr/`).
+The selected stack is recorded in TS-1; the ADR will capture implementation details, costs and fallbacks.
 
 **This is one Next.js app, not two.** The frontend and backend live in the same repo and deploy together to Vercel. There is no separate API server. Pages are React components; backend logic runs on the server through Next.js server-side functionality.
 
@@ -48,7 +48,7 @@ Confirmed or changed by the architecture decision record in TS-1 (`docs/adr/`).
 | **Infra and tooling** | Hosting | Vercel, a cloud hosting and deployment platform optimized for Next.js with minimal configuration |
 | | Version control | Git + GitHub, for team collaboration and code management |
 
-In the two-week mini-plan, the backend and data layers are skipped: pages read from a static data file. See [docs/MINI-PLAN.md](docs/MINI-PLAN.md).
+In the two-week mini-plan, database-backed features are deferred: pages read from a static data file inside this same Next.js app. There is no separate API server. See [docs/MINI-PLAN.md](docs/MINI-PLAN.md).
 
 More detail in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
@@ -64,12 +64,12 @@ npx playwright install chromium # once, for the end-to-end tests
 npm run dev                     # http://localhost:3000
 ```
 
-Checks to run before opening a PR (CI will run the same once TS-3 lands): `npm run lint`, `npm run typecheck`, `npm test`, `npm run e2e`, `npm run format:check`.
+Checks to run before opening a PR: `npm run lint`, `npm run typecheck`, `npm test`, `npm run e2e`, `npm run format:check`, and `npm run build`. GitHub Actions runs lint, typecheck, formatting, unit tests and build; browser tests are included when the Playwright configuration is present. The target CI suite also includes axe checks and a Lighthouse CI Home budget.
 
 - `npm test` runs Vitest unit and component tests (`src/**/*.test.ts(x)`).
 - `npm run e2e` runs Playwright browser tests (`e2e/`) on a phone and a desktop viewport. It starts the dev server for you, or reuses one already running on port 3000. Set `PLAYWRIGHT_BASE_URL` to test a deployed site instead.
 
-There is no database yet; TS-4 and BE-1 add it, along with `.env.example`.
+Postgres, Prisma, Auth.js and the email/storage integrations are planned but not wired into the current scaffold. TS-4 and BE-1 establish isolated staging/production databases and migrations; add required environment variables to `.env.example`.
 
 ## Repository map
 
@@ -77,7 +77,7 @@ There is no database yet; TS-4 and BE-1 add it, along with `.env.example`.
 .
 ├── README.md                  you are here
 ├── CONTRIBUTING.md            how we work: branches, PRs, reviews, definition of done
-├── .github/                   PR template, issue templates (CI workflows added in TS-3)
+├── .github/                   PR and issue templates, GitHub Actions CI
 └── docs/
     ├── MINI-PLAN.md           two-week plan to a working site by Fri Nov 6, and what "passable" means
     ├── PLAN.md                phases, 8-week schedule, capacity, risks
@@ -88,7 +88,7 @@ There is no database yet; TS-4 and BE-1 add it, along with `.env.example`.
     └── plan/full-outline.md   the original full outline: all 326 tasks/subtasks with goals
 ```
 
-Planned code layout (created in TS-2, adjust in the ADR): `src/app` routes, `src/components` UI primitives and sections, `src/server` actions, queries and auth helpers, `prisma/` schema, migrations and seed, `e2e/` Playwright tests.
+Code layout: `src/app` routes and layouts, `src/components` UI primitives and sections, `src/server` server actions, route handlers, queries and auth helpers, `prisma/` schema/migrations/seed, and `e2e/` Playwright tests. These are parts of one Next.js app and deploy together to Vercel.
 
 ## Work areas and owners
 

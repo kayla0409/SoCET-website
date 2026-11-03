@@ -2,6 +2,8 @@
 
 Short version: pick a task, branch, open a PR, get one review, merge when CI is green.
 
+The frontend and server logic are one Next.js App Router application in this repository. Do not add a separate API service: use React components for pages and Next.js server actions or route handlers for server work in `src/server`.
+
 ## 1. Pick work
 
 - Work from the current week in [docs/PHASE-1-TASKS.md](docs/PHASE-1-TASKS.md).
@@ -43,11 +45,13 @@ Plus whatever the task lists. For UI also:
 
 - TypeScript strict. No `any` without a comment saying why.
 - Validate all external input with Zod, on the server.
+- Validate every server action and form with Zod.
 - Admin server actions call `requireRole` first. Add a test for the denied path.
 - No real personal data in seed data, fixtures, logs or screenshots.
 - Never commit secrets. Add new variables to `.env.example` with a dummy value.
 - Images need alt text. Interactive elements are real buttons/links.
 - Use tokens and primitives from the design system; don't hard-code colors or spacing.
+- Use `next/image` for images and provide required alt text.
 
 ## 6. Changing the plan
 
