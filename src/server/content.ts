@@ -7,3 +7,8 @@ import { events, type ClubEvent } from "@/content/events";
 export async function getEvents(): Promise<ClubEvent[]> {
   return [...events].sort((a, b) => a.start.localeCompare(b.start));
 }
+
+/** One event by its id (the URL slug), or undefined if there's no such event. */
+export async function getEvent(id: string): Promise<ClubEvent | undefined> {
+  return events.find((event) => event.id === id);
+}

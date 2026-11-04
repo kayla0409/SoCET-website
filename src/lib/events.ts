@@ -1,4 +1,4 @@
-import type { ClubEvent } from "@/content/events";
+import type { ClubEvent, EventType } from "@/content/events";
 
 /** All dates on the site are shown in the club's time zone, whatever the visitor's. */
 export const CLUB_TIME_ZONE = "America/Los_Angeles";
@@ -148,4 +148,52 @@ export function eventDateTile(event: ClubEvent): {
     month: monthShortFormat.format(start),
     day: dayNumberFormat.format(start),
   };
+}
+
+/** An event is over once it ends; until then it counts as upcoming. */
+export function hasEnded(event: ClubEvent, now: Date): boolean {
+  return new Date(event.end).getTime() <= now.getTime();
+}
+
+/** Events that have ended, most recent first. */
+export function getPastEvents(events: ClubEvent[], now: Date): ClubEvent[] {
+  return events
+    .filter((event) => hasEnded(event, now))
+    .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime());
+}
+
+export const eventTypeLabels: Record<EventType, string> = {
+  speaker: "Speaker",
+  workshop: "Workshop",
+  "journal-club": "Journal club",
+  "site-tour": "Site tour",
+  hackathon: "Hackathon",
+  social: "Social",
+};
+
+const eventLongDateFormat = new Intl.DateTimeFormat("en-US", {
+  timeZone: CLUB_TIME_ZONE,
+  weekday: "long",
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+const eventTimeWithZoneFormat = new Intl.DateTimeFormat("en-US", {
+  timeZone: CLUB_TIME_ZONE,
+  hour: "numeric",
+  minute: "2-digit",
+  timeZoneName: "short",
+});
+
+/** e.g. "Thursday, November 5, 2026". */
+export function formatEventLongDate(event: ClubEvent): string {
+  return eventLongDateFormat.format(new Date(event.start));
+}
+
+/** e.g. "6:00 – 8:00 PM PST", so visitors outside LA know the time zone. */
+export function formatEventTimeRangeWithZone(event: ClubEvent): string {
+  return eventTimeWithZoneFormat.formatRange(
+    new Date(event.start),
+    new Date(event.end),
+  );
 }
