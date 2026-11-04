@@ -4,19 +4,7 @@ How the site is built. The reasons for each choice, the options we rejected, cos
 
 ## System overview
 
-```
-Visitor / Officer browser
-        │
-        ▼
-Vercel: one Next.js App Router app
-   ├── React pages and components
-   └── Server actions or route handlers in src/server
-           ├── Supabase: Postgres, Auth (officer magic links), Storage (team photos)
-           ├── Resend (login emails, officer notifications)
-           ├── Mailchimp (newsletter, double opt-in)
-           ├── Google Calendar public feed (events, read by getEvents())
-           └── Sentry, cookieless analytics and uptime monitoring
-```
+The full diagram is at the bottom of this file. In short: the browser reaches one Next.js app on Vercel, and its server code talks to Supabase (Postgres, Auth, Storage), Resend, Mailchimp, the public Google Calendar feed and Sentry. Analytics runs in the browser, and the uptime monitor watches the site and the daily keep-alive ping.
 
 There is no separate frontend or API server: pages and server code live in this repository and deploy together to Vercel. Officers sign in with Supabase Auth magic links (sent through Resend); only allowlisted officer emails can sign in. Public visitors do not need accounts in Phase 1.
 
@@ -40,7 +28,9 @@ There is no separate frontend or API server: pages and server code live in this 
 | Hosting | Vercel, with a preview deployment per PR |
 | CI | GitHub Actions |
 | Tests | Vitest unit tests; Playwright e2e and axe accessibility checks; Lighthouse CI Home budget (planned, TS-3.2) |
-| Monitoring | Sentry free tier with PII scrubbing, cookieless analytics and uptime monitoring |
+| Error tracking | Sentry free tier with PII scrubbing |
+| Analytics | Vercel Web Analytics (cookieless, no personal data) |
+| Uptime monitor | Better Stack free plan: site monitor plus a heartbeat for the keep-alive ping |
 
 ## Data model (Phase 1)
 
@@ -67,7 +57,7 @@ Event types in the plan: speaker, workshop, journal club, site tour, hackathon, 
 - **Uploads:** validate type and size; alt text required.
 - **Secrets** only in Vercel env vars; `.env.example` holds dummy values. Staging and production are separate Supabase projects; seed data is fake and guarded from production.
 - **Monitoring** must scrub PII (Sentry) and use cookieless analytics.
-- **Accounts** (domain registrar, Vercel, Supabase, Resend, Mailchimp, Google Calendar, Sentry) are owned by a club login, recorded in the account inventory (PH-2).
+- **Accounts** (domain registrar, Vercel, Supabase, Resend, Mailchimp, Google Calendar, Sentry, Better Stack, Figma) are owned by a club account, recorded in the account inventory (PH-2). Which login that is stays [TBD] (open question #29).
 
 ## Environments
 
@@ -94,59 +84,58 @@ Put them in `docs/adr/`. Copy `0000-template.md` and number it. [ADR-0001](adr/0
 
 ## System diagram
 
-Phase 1 scope only. Extra pages and forms (Build With Us, Projects, Resources) are waiting on an officer decision; see ADR-0001.
+Phase 1 scope only. Extra pages and forms (Build With Us, Projects, Resources) are waiting on an officer decision; see ADR-0001. Every store and service here is in the ADR cost table.
+
+### Runtime: what happens when someone visits
 
 ```mermaid
-flowchart LR
-  Users["Visitors: UCLA students and others"]
-  Officers["Club officers"]
+flowchart TB
+  B["Browser: visitors and officers"]
+  D["Domain and DNS (TS-7)"]
+  V["Vercel: Next.js app<br/>pages + server code (src/server)"]
+  A["Vercel Web Analytics<br/>cookieless"]
 
-  subgraph Vercel["Vercel: hosting and deployment"]
-    subgraph Next["Next.js app (single codebase)"]
-      subgraph FE["Pages"]
-        Pages["Home, About, Events, Team, Join, Contact, Privacy"]
-        Forms["Forms: Join, Newsletter, Contact"]
-        Admin["Admin page (IF-3), officers only"]
-      end
-      subgraph BE["Server actions or route handlers (src/server)"]
-        Logic["Validate with Zod, honeypot and rate limit, check duplicates, call services"]
-        GetEv["getEvents()"]
-        Env["Environment variables: keys, server-side only"]
-      end
-    end
+  subgraph SB["Supabase"]
+    PG[("Postgres")]
+    AU["Auth: officer magic links"]
+    ST[("Storage: team photos")]
   end
 
-  subgraph Ext["External services"]
-    Supa["Supabase: Postgres, Auth, Storage"]
-    Mail["Mailchimp: newsletter"]
-    Resend["Resend: login and notification emails"]
-    Cal["Google Calendar: public SoCET Events feed"]
-    Disc["Discord: invite link"]
-  end
+  R["Resend: email"]
+  M["Mailchimp: newsletter"]
+  C["Google Calendar<br/>public events feed"]
+  S["Sentry: errors"]
+  U["Better Stack: uptime monitor"]
 
-  Users -->|"view pages"| Pages
-  Users -->|"submit"| Forms
-  Forms --> Logic
-  Officers -->|"magic-link sign-in"| Admin
-  Admin --> Logic
-  Logic -->|"join and contact submissions, team"| Supa
-  Logic -->|"add subscriber"| Mail
-  Logic -->|"notify officers"| Resend
-  Supa -->|"login emails via SMTP"| Resend
-  Pages --> GetEv
-  GetEv -->|"read public feed"| Cal
-  Pages -->|"link"| Disc
-
-  subgraph Dev["Development workflow"]
-    Local["Local development"]
-    GH["GitHub: PRs and CI"]
-    Prev["Vercel preview per PR"]
-    Live["Production site"]
-  end
-
-  Local -->|"push branch"| GH
-  GH -->|"each PR"| Prev
-  GH -->|"merge to main"| Live
+  B --> D --> V
+  B -. "page views" .-> A
+  V --> PG
+  V --> AU
+  V --> ST
+  V -->|"officer notifications"| R
+  AU -->|"login emails (SMTP)"| R
+  V -->|"add subscriber"| M
+  V -->|"getEvents() reads feed"| C
+  V -->|"errors, PII scrubbed"| S
+  U -->|"checks the site"| V
+  V -->|"daily keep-alive ping"| PG
+  V -->|"daily heartbeat"| U
 ```
 
-**In words:** visitors read pages and submit the Join, Newsletter and Contact forms. Each form calls a server action, which validates the input and then stores it in Supabase, adds the person to Mailchimp, or emails officers through Resend. Event pages call `getEvents()`, which reads the public Google Calendar feed on the server, so visitors never load Google's iframe or cookies. Officers sign in with a magic link and manage team members and submissions on the admin page. Every PR gets a Vercel preview, and merging to `main` deploys production.
+### Development workflow
+
+```mermaid
+flowchart TB
+  F["Figma: design tokens"]
+  L["Local development"]
+  G["GitHub: PRs and Actions CI"]
+  P["Vercel preview per PR"]
+  X["Production site on Vercel"]
+
+  F -->|"tokens exported as JSON"| L
+  L -->|"push branch"| G
+  G -->|"each PR"| P
+  G -->|"merge to main"| X
+```
+
+**In words:** visitors read pages and submit the Join, Newsletter and Contact forms. Each form calls a server action, which validates the input and then stores it in Supabase, adds the person to Mailchimp, or emails officers through Resend. Event pages call `getEvents()`, which reads the public Google Calendar feed on the server, so visitors never load Google's iframe or cookies. Officers sign in with a magic link and manage team members and submissions on the admin page. Errors go to Sentry and page views to Vercel Web Analytics, neither with personal data. Better Stack checks the site and expects a daily heartbeat from the Supabase keep-alive job. Every PR gets a Vercel preview, and merging to `main` deploys production. The Discord invite is a plain link, so it is not drawn.

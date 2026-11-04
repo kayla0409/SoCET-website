@@ -26,7 +26,7 @@ Phase 1 is **176 h** against a 180 h cap. Do not add scope to Phase 1. Put ideas
 
 ## Stack
 
-Why we chose each piece, what we rejected, costs and who owns each account: [ADR-0001](docs/adr/0001-stack.md) (proposed, awaiting team sign-off).
+Why we chose each piece, what we rejected, costs and who owns each account: [ADR-0001](docs/adr/0001-stack.md) (accepted when the dev team approves the PR that finished it).
 
 **This is one Next.js app, not two.** Frontend and server code live in this repo and deploy together to Vercel. There is no separate API server.
 
@@ -47,7 +47,7 @@ Why we chose each piece, what we rejected, costs and who owns each account: [ADR
 | **Infra and tooling** | Hosting | Vercel, preview per PR | Built for Next.js, free tier |
 | | Version control and CI | Git, GitHub, GitHub Actions | Every PR is checked before merge |
 | | Tests | Vitest (unit); Playwright + axe (e2e and accessibility); Lighthouse CI Home budget planned (TS-3.2) | Catch broken pages and accessibility regressions |
-| | Monitoring | Sentry with PII scrubbing, cookieless analytics, uptime monitor (TS-6) | Find errors without tracking visitors |
+| | Monitoring | Sentry with PII scrubbing; Vercel Web Analytics (cookieless); Better Stack uptime monitor (TS-6) | Find errors and outages without tracking visitors |
 
 In the two-week mini-plan, the database is skipped: pages read from a static data file. See [docs/MINI-PLAN.md](docs/MINI-PLAN.md).
 
