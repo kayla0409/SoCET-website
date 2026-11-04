@@ -63,9 +63,7 @@ export default function JoinPage() {
               <h3 className="text-xl font-semibold">
                 <span className="text-muted">2. </span>Join the Discord
               </h3>
-              <p className="mt-3 text-muted">
-                Chat with members and hear about plans first.
-              </p>
+              <p className="mt-3 text-muted">Chat with other members.</p>
               <a
                 href={site.discordUrl}
                 className={`mt-5 inline-block ${linkClass}`}
@@ -79,7 +77,7 @@ export default function JoinPage() {
                 event
               </h3>
               <p className="mt-3 text-muted">
-                Follow along on Instagram, then drop in to an upcoming event.
+                Follow along on Instagram, then come to an upcoming event.
               </p>
               <p className="mt-5 flex flex-col gap-3 sm:flex-row sm:gap-8">
                 <a href={site.instagramUrl} className={linkClass}>
@@ -107,7 +105,7 @@ export default function JoinPage() {
           </h2>
           <ul className="mt-6 list-disc space-y-3 pl-6 text-lg">
             <li>You&apos;ll get event invites and club news by email.</li>
-            <li>Discord is where members talk day to day.</li>
+            <li>Discord is where members chat.</li>
           </ul>
           <p className="mt-8 text-lg">
             Questions? Email us at{" "}
