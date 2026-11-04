@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 
 // Every page's definition of done includes "axe reports zero violations".
 // Add new routes here as they're built.
-const routes = ["/"];
+const routes = ["/", "/join"];
 
 // WCAG 2.2 A and AA, the level the plan targets.
 const wcagTags = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
