@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/lib/site";
 
 export function Hero() {
@@ -31,12 +32,12 @@ export function Hero() {
           real-world site visits.
         </p>
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-          <a
-            href={site.joinFormUrl}
+          <Link
+            href="/join"
             className="rounded-full bg-ucla-gold px-8 py-3 text-base font-semibold text-ucla-blue-darkest shadow-sm transition hover:bg-white"
           >
             Join SoCET
-          </a>
+          </Link>
           <a
             href="#events"
             className="py-3 font-semibold text-white underline decoration-ucla-gold decoration-2 underline-offset-4 hover:decoration-white"
