@@ -3,8 +3,12 @@ import type { ClubEvent } from "@/content/events";
 import {
   addMonths,
   dayKey,
+  formatEventLongDate,
   formatEventTimeRange,
+  formatEventTimeRangeWithZone,
+  getPastEvents,
   getUpcomingEvents,
+  hasEnded,
   groupEventsByDay,
   monthGrid,
 } from "./events";
@@ -99,5 +103,53 @@ describe("formatEventTimeRange", () => {
       event("x", "2026-11-05T18:00:00-08:00", "2026-11-05T20:00:00-08:00"),
     );
     expect(text.replace(/\s/g, " ")).toMatch(/^6:00 – 8:00 PM$/);
+  });
+});
+
+describe("hasEnded and getPastEvents", () => {
+  const now = new Date("2026-11-05T18:30:00-08:00");
+  const inProgress = event(
+    "in-progress",
+    "2026-11-05T18:00:00-08:00",
+    "2026-11-05T19:00:00-08:00",
+  );
+  const older = event(
+    "older",
+    "2026-09-01T18:00:00-07:00",
+    "2026-09-01T19:00:00-07:00",
+  );
+  const recent = event(
+    "recent",
+    "2026-10-15T18:00:00-07:00",
+    "2026-10-15T19:00:00-07:00",
+  );
+
+  it("treats an event in progress as not ended", () => {
+    expect(hasEnded(inProgress, now)).toBe(false);
+    expect(hasEnded(recent, now)).toBe(true);
+  });
+
+  it("lists only ended events, most recent first", () => {
+    expect(
+      getPastEvents([older, inProgress, recent], now).map((e) => e.id),
+    ).toEqual(["recent", "older"]);
+  });
+});
+
+describe("detail page formatting", () => {
+  const talk = event(
+    "talk",
+    "2026-11-05T18:00:00-08:00",
+    "2026-11-05T20:00:00-08:00",
+  );
+
+  it("shows the full date in Los Angeles", () => {
+    expect(formatEventLongDate(talk)).toBe("Thursday, November 5, 2026");
+  });
+
+  it("shows the time zone with the time range", () => {
+    expect(formatEventTimeRangeWithZone(talk)).toMatch(
+      /^6:00\s.\s8:00\sPM\sPST$/,
+    );
   });
 });

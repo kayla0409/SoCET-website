@@ -64,7 +64,7 @@ Milestone: all public pages on preview; filter and add-to-calendar working.
 | Done | ID | Task | h | OI | Depends on | Owner | Actual h |
 |---|---|---|---|---|---|---|---|
 | [ ] | PD-2 | About page (mission, what we do, FAQ) | 3 | | TS-5, DC-3 | | |
-| [ ] | PD-3 | Events list and event detail pages | 6 | | TS-5, BE-3, DS-3 | | |
+| [ ] | PD-3 | Events list and event detail pages | 6 | | TS-5, BE-3, DS-3 | Tu | |
 | [ ] | PD-4 | Join page | 2 | | TS-5, DC-3 | | |
 | [ ] | PD-5 | Team page (officers) | 2 | | TS-5, BE-4 | Tu | |
 | [ ] | PD-6 | Contact page | 1 | | TS-5 | | |
