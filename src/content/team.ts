@@ -7,7 +7,7 @@
  * Photos go in `public/team/`, e.g. `photo: "/team/jane-doe.jpg"`.
  */
 
-export interface TeamMember {
+export type TeamMember = {
   /** Stable, URL-safe id, e.g. "jane-doe". */
   id: string;
   name: string;
@@ -15,10 +15,14 @@ export interface TeamMember {
   role: string;
   /** One or two sentences, approved by the officer. */
   bio?: string;
-  /** Path under `public/`, square works best. */
-  photo?: string;
-  /** Required with `photo`. Describe the photo, e.g. "Jane smiling outside Royce Hall". */
-  photoAlt?: string;
-}
+} & (
+  | {
+      /** Path under `public/`, square works best. */
+      photo: string;
+      /** Describe the photo, e.g. "Jane smiling outside Royce Hall". */
+      photoAlt: string;
+    }
+  | { photo?: undefined; photoAlt?: undefined }
+);
 
 export const team: TeamMember[] = [];

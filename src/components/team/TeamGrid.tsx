@@ -17,7 +17,7 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
       {member.photo ? (
         <Image
           src={member.photo}
-          alt={member.photoAlt ?? ""}
+          alt={member.photoAlt}
           width={160}
           height={160}
           sizes="160px"
