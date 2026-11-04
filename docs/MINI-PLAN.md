@@ -50,7 +50,7 @@ The mini-plan is done when every box is true on the **deployed Vercel URL**:
 | ID | Task (trimmed) | h | OI | Depends on | Owner |
 |---|---|---|---|---|---|
 | DC-1 (lite) | One officer meeting: name styling (SOCET vs SoCET), one-line positioning, who approves copy, who owns accounts | 2 | OI | none | |
-| TS-1 (lite) | One-page ADR: stack, costs (all free tier), club-owned accounts ([ADR-0001](adr/0001-stack.md), proposed) | 2 | | none | |
+| TS-1 (lite) | One-page ADR: stack, costs (all free tier), club-owned accounts ([ADR-0001](adr/0001-stack.md), accepted) | 2 | | none | |
 | TS-2 | Scaffold: Next.js App Router, TypeScript strict, ESLint/Prettier, Vitest, branch protection (CI + 1 review), PR template. **Fix README setup steps here** | 3 | | none | |
 | TS-3 (lite) | GitHub Actions (lint, typecheck, test) and Vercel project with a preview URL per PR | 3 | | TS-2 | |
 | DC-2 (lite) | Collect from officers: logo, social links, club email, Partiful links for each event, officer names and photos with permission | 2 | OI | none | |
