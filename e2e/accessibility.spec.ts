@@ -15,13 +15,17 @@ const routes = [
 // WCAG 2.2 A and AA, the level the plan targets.
 const wcagTags = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
-for (const route of routes) {
+// The 404 page is reached by an unknown URL, so it is not in `routes`.
+const notFoundRoute = "/does-not-exist";
+
+for (const route of [...routes, notFoundRoute]) {
   for (const colorScheme of ["light", "dark"] as const) {
     test(`${route} has no WCAG A/AA violations in ${colorScheme} mode`, async ({
       page,
     }) => {
       await page.emulateMedia({ colorScheme });
-      await page.goto(route);
+      const response = await page.goto(route);
+      if (route === notFoundRoute) expect(response?.status()).toBe(404);
 
       // Check the expanded state too: open every FAQ item in the dark run.
       if (route === "/about" && colorScheme === "dark") {
