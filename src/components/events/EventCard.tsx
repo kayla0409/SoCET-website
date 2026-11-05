@@ -16,32 +16,30 @@ export function EventCard({ event }: { event: ClubEvent }) {
   const tile = eventDateTile(event);
 
   return (
-    <article className="relative flex gap-4 rounded-2xl border border-border bg-surface p-4 shadow-sm transition-colors hover:border-accent">
+    <article className="tone-dark card-dark relative flex gap-5 border border-transparent p-5 transition duration-200 hover:-translate-y-1 hover:border-lime/60 sm:p-6">
       <div
         aria-hidden="true"
-        className="flex w-16 shrink-0 flex-col items-center justify-center rounded-xl bg-ucla-blue-darkest py-2 text-white"
+        className="flex w-16 shrink-0 flex-col items-center justify-center rounded-md border border-lime/60 py-2 text-paper"
       >
-        <span className="text-xs font-semibold uppercase tracking-wide text-ucla-gold">
-          {tile.month}
+        <span className="eyebrow text-lime">{tile.month}</span>
+        <span className="font-display text-3xl font-black tracking-tight">
+          {tile.day}
         </span>
-        <span className="text-2xl font-bold">{tile.day}</span>
       </div>
       <div className="min-w-0">
         {event.type && (
-          <p className="mb-1 inline-block rounded-full bg-accent-soft px-2 py-0.5 text-xs font-semibold text-foreground">
-            {eventTypeLabels[event.type]}
-          </p>
+          <p className="tag mb-3 text-lime">{eventTypeLabels[event.type]}</p>
         )}
-        <h3 className="font-semibold text-pretty">
+        <h3 className="text-lg font-bold tracking-tight text-pretty sm:text-xl">
           {/* The ::after overlay stretches this link over the whole card. */}
           <Link
             href={eventHref(event)}
-            className="underline-offset-4 after:absolute after:inset-0 after:rounded-2xl hover:underline focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-accent"
+            className="underline-offset-4 after:absolute after:inset-0 after:rounded-lg hover:underline focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-accent"
           >
             {event.title}
           </Link>
         </h3>
-        <p className="text-sm text-muted">
+        <p className="mt-1 text-sm text-muted">
           <time dateTime={event.start}>
             {formatEventDate(event)}, {formatEventTimeRange(event)}
           </time>

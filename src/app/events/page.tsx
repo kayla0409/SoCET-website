@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cacheLife } from "next/cache";
 import type { ReactNode } from "react";
 import { EventCard } from "@/components/events/EventCard";
+import { CircuitLines } from "@/components/decor/Decor";
 import type { ClubEvent } from "@/content/events";
 import { getPastEvents, getUpcomingEvents } from "@/lib/events";
 import { site } from "@/lib/site";
@@ -33,32 +34,32 @@ export default async function EventsPage() {
 
   return (
     <>
+      {/* Events opens near-black with circuit traces and a two-column header. */}
       <section
         aria-labelledby="events-page-heading"
-        className="bg-ucla-blue-darkest py-16 text-white sm:py-20"
+        data-tone="dark"
+        className="tone-dark relative isolate overflow-hidden bg-ink"
       >
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+        <CircuitLines className="bottom-[-5rem] left-[-6rem] -z-10 w-[min(38rem,90vw)] opacity-35" />
+        <div className="container-x grid gap-10 pt-40 pb-20 sm:pt-52 sm:pb-24 md:grid-cols-[3fr_2fr] md:items-end">
           <h1
             id="events-page-heading"
-            className="text-4xl font-bold tracking-tight text-balance text-ucla-gold sm:text-5xl"
+            className="display-xl rise text-[clamp(4rem,14vw,11rem)] text-paper"
           >
             Events
           </h1>
-          <p className="mt-6 text-lg text-pretty text-white">
+          <p className="lede rise border-l-2 border-lime pl-6 text-muted [--rise-delay:120ms]">
             Speaker series, workshops, journal clubs and site tours. Everyone is
             welcome.
           </p>
         </div>
       </section>
 
-      <div className="mx-auto flex max-w-3xl flex-col gap-16 px-4 py-16 sm:px-6 sm:py-20">
+      <div className="container-x section-y flex flex-col gap-24">
         {total === 0 ? (
-          <p className="rounded-2xl border border-dashed border-border bg-surface p-6 text-muted">
+          <p className="max-w-2xl rounded-lg border border-dashed border-muted/50 p-6 text-muted">
             No events are posted yet. Questions? Email{" "}
-            <a
-              href={`mailto:${site.email}`}
-              className="font-semibold text-accent underline underline-offset-4"
-            >
+            <a href={`mailto:${site.email}`} className="link-u break-all">
               {site.email}
             </a>
             .
@@ -70,7 +71,7 @@ export default async function EventsPage() {
               title="Upcoming events"
               events={upcoming}
             >
-              <p className="rounded-2xl border border-dashed border-border bg-surface p-6 text-muted">
+              <p className="max-w-2xl rounded-lg border border-dashed border-muted/50 p-6 text-muted">
                 No upcoming events are posted yet. Check back soon.
               </p>
             </EventSection>
@@ -98,18 +99,15 @@ function EventSection({
 }) {
   return (
     <section aria-labelledby={`${id}-heading`}>
-      <h2
-        id={`${id}-heading`}
-        className="mb-6 text-2xl font-bold tracking-tight sm:text-3xl"
-      >
+      <h2 id={`${id}-heading`} className="display-lg reveal mb-12">
         {title}
       </h2>
       {events.length === 0 ? (
         emptyState
       ) : (
-        <ul className="flex flex-col gap-4">
+        <ul className="grid gap-5 md:grid-cols-2">
           {events.map((event) => (
-            <li key={event.id}>
+            <li key={event.id} className="reveal">
               <EventCard event={event} />
             </li>
           ))}

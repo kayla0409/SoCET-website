@@ -23,7 +23,7 @@ export function MailingListForm({ action }: MailingListFormProps) {
     return (
       <p
         role="status"
-        className="mt-8 rounded-2xl bg-white/10 px-6 py-4 text-lg font-semibold"
+        className="mt-10 rounded-lg border border-lime/50 px-6 py-4 text-lg font-semibold text-lime"
       >
         {state.message}
       </p>
@@ -34,7 +34,7 @@ export function MailingListForm({ action }: MailingListFormProps) {
     <form
       action={formAction}
       noValidate
-      className="mt-8 w-full max-w-xl text-left"
+      className="mt-10 w-full max-w-xl text-left"
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <Field
@@ -73,14 +73,14 @@ export function MailingListForm({ action }: MailingListFormProps) {
       <button
         type="submit"
         disabled={pending}
-        className="mt-6 w-full rounded-full border-2 border-ucla-gold px-8 py-3 font-semibold text-ucla-gold transition hover:bg-ucla-gold hover:text-ucla-blue-darkest disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+        className="btn-lime mt-6 w-full justify-center hover:border-paper hover:bg-paper disabled:cursor-wait disabled:opacity-70 sm:w-auto"
       >
         {pending ? "Joining…" : "Join the mailing list"}
       </button>
 
       <p
         aria-live="polite"
-        className="mt-4 min-h-6 text-sm font-semibold text-ucla-gold"
+        className="mt-4 min-h-6 text-sm font-semibold text-lime"
       >
         {state.status === "error" && (
           <>
@@ -89,10 +89,7 @@ export function MailingListForm({ action }: MailingListFormProps) {
               <>
                 {" "}
                 Or{" "}
-                <a
-                  href={site.joinFormUrl}
-                  className="underline underline-offset-4"
-                >
+                <a href={site.joinFormUrl} className="link-u">
                   join with our Google Form
                 </a>
                 .
@@ -101,7 +98,7 @@ export function MailingListForm({ action }: MailingListFormProps) {
           </>
         )}
       </p>
-      <p className="mt-2 text-sm text-white/80">
+      <p className="mt-2 text-sm text-muted">
         We&apos;ll email you a link to confirm. We only use your email for SoCET
         news, and you can unsubscribe anytime.
       </p>
@@ -131,7 +128,7 @@ function Field({
   const errorId = `${id}-error`;
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-semibold">
+      <label htmlFor={id} className="eyebrow text-muted">
         {label}
       </label>
       <input
@@ -143,12 +140,12 @@ function Field({
         defaultValue={defaultValue}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
-        className={`rounded-lg border-2 bg-white px-4 py-3 text-ucla-blue-darkest placeholder:text-slate-500 ${
-          error ? "border-ucla-gold" : "border-transparent"
+        className={`border bg-graphite px-4 py-3 text-paper transition-colors duration-200 placeholder:text-fog focus:border-lime ${
+          error ? "border-lime" : "border-border"
         }`}
       />
       {error && (
-        <p id={errorId} className="text-sm font-semibold text-ucla-gold">
+        <p id={errorId} className="text-sm font-semibold text-lime">
           {error}
         </p>
       )}

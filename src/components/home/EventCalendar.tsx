@@ -49,23 +49,27 @@ export function EventCalendar({ events, todayKey }: EventCalendarProps) {
   };
 
   return (
-    <div className="rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-6">
+    <div className="tone-dark card-dark p-5 sm:p-7">
       <div className="flex items-center justify-between gap-2">
         <button
           type="button"
           onClick={() => changeMonth(-1)}
-          className="flex size-11 items-center justify-center rounded-full text-xl hover:bg-accent-soft"
+          className="flex size-11 items-center justify-center border border-border text-xl transition-colors duration-200 hover:border-lime hover:text-lime"
           aria-label="Previous month"
         >
           <span aria-hidden="true">‹</span>
         </button>
-        <h3 id={headingId} className="text-lg font-semibold" aria-live="polite">
+        <h3
+          id={headingId}
+          className="font-display text-xl font-extrabold tracking-tight"
+          aria-live="polite"
+        >
           {formatMonthLabel(visibleMonth)}
         </h3>
         <button
           type="button"
           onClick={() => changeMonth(1)}
-          className="flex size-11 items-center justify-center rounded-full text-xl hover:bg-accent-soft"
+          className="flex size-11 items-center justify-center border border-border text-xl transition-colors duration-200 hover:border-lime hover:text-lime"
           aria-label="Next month"
         >
           <span aria-hidden="true">›</span>
@@ -79,11 +83,7 @@ export function EventCalendar({ events, todayKey }: EventCalendarProps) {
         <thead>
           <tr>
             {weekdays.map(([short, long]) => (
-              <th
-                key={long}
-                scope="col"
-                className="pb-2 text-xs font-semibold text-muted"
-              >
+              <th key={long} scope="col" className="eyebrow pb-3 text-muted">
                 <span aria-hidden="true">{short}</span>
                 <span className="sr-only">{long}</span>
               </th>
@@ -134,7 +134,7 @@ export function EventCalendar({ events, todayKey }: EventCalendarProps) {
                       <a
                         href={event.rsvpUrl}
                         aria-label={`RSVP for ${event.title}`}
-                        className="font-semibold text-accent underline underline-offset-4"
+                        className="link-u"
                       >
                         RSVP
                       </a>
@@ -170,7 +170,7 @@ function DayCell({
   onSelect,
 }: DayCellProps) {
   const dayNumber = parseDayKey(dayKey).day;
-  const todayRing = isToday ? "ring-2 ring-ucla-blue dark:ring-ucla-gold" : "";
+  const todayRing = isToday ? "ring-1 ring-paper" : "";
 
   if (eventCount === 0) {
     return (
@@ -190,10 +190,8 @@ function DayCell({
       aria-pressed={isSelected}
       aria-current={isToday ? "date" : undefined}
       aria-label={`${formatDayLabel(dayKey)}, ${eventCount} ${eventCount === 1 ? "event" : "events"}`}
-      className={`relative mx-auto flex size-10 items-center justify-center rounded-full text-sm font-bold ${todayRing} ${
-        isSelected
-          ? "bg-ucla-gold text-ucla-blue-darkest"
-          : "bg-ucla-blue-darkest text-white hover:bg-ucla-blue-dark"
+      className={`relative mx-auto flex size-10 items-center justify-center rounded-full text-sm font-bold transition-colors duration-200 ${todayRing} ${
+        isSelected ? "bg-paper text-ink" : "bg-lime text-ink hover:bg-paper"
       }`}
     >
       {dayNumber}

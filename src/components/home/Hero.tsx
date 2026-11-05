@@ -1,51 +1,105 @@
 import Link from "next/link";
+import { LightStreak, Skyline } from "@/components/decor/Decor";
 import { site } from "@/lib/site";
 
+/** Splits "… at UCLA" so the last line can be set in lime. Text is unchanged. */
+function splitTail(name: string): [string, string] {
+  const at = name.lastIndexOf(" at ");
+  return at === -1 ? [name, ""] : [name.slice(0, at), name.slice(at + 1)];
+}
+
 export function Hero() {
+  const [lead, tail] = splitTail(site.fullName);
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative isolate overflow-hidden bg-ucla-blue-darkest text-white"
+      data-tone="dark"
+      className="tone-dark bg-concrete relative isolate flex min-h-[100svh] flex-col overflow-hidden"
     >
-      {/* Sky-to-solar-panel backdrop, a nod to the club's current site. Decorative only. */}
+      <LightStreak className="-z-10 max-sm:opacity-45" />
+      {/* Soft scrim behind the copy so it reads over the lighter top of the gradient. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-ucla-blue-darkest via-ucla-blue-dark to-ucla-blue"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgb(17_17_17/0.55)_0%,rgb(17_17_17/0.2)_45%,transparent_70%)]"
       />
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 -z-10 h-2/5 opacity-25 [background-image:linear-gradient(to_right,rgba(255,255,255,.5)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.5)_1px,transparent_1px)] [background-size:56px_32px] [mask-image:linear-gradient(to_bottom,transparent,black)]"
-      />
-      <div className="mx-auto flex max-w-4xl flex-col items-center px-4 py-20 text-center sm:px-6 sm:py-28">
-        <p className="text-sm font-semibold uppercase tracking-widest text-white/90">
-          UCLA student organization · Open to all majors
+      <Skyline className="-z-10" />
+
+      <div className="container-x flex flex-1 flex-col justify-end pt-36 pb-[clamp(170px,24vw,290px)]">
+        <p className="rise flex flex-wrap gap-2">
+          <span className="tag bg-ink/45 text-lime backdrop-blur-sm">
+            UCLA student organization
+          </span>
+          <span className="sr-only"> · </span>
+          <span className="tag bg-ink/45 text-paper backdrop-blur-sm">
+            Open to all majors
+          </span>
         </p>
         <h1
           id="hero-heading"
-          className="mt-4 text-4xl font-bold tracking-tight text-balance text-ucla-gold sm:text-6xl"
+          className="display-xl rise mt-7 text-paper [--rise-delay:80ms] sm:max-w-[15ch]"
         >
-          {site.fullName}
+          {lead}
+          {tail && (
+            <>
+              {" "}
+              <span className="block text-lime">{tail}</span>
+            </>
+          )}
         </h1>
-        <p className="mt-6 max-w-2xl text-lg text-pretty text-white">
-          We bring students from every major into Los Angeles&apos;s clean
-          technology sector through education, cross-disciplinary teamwork and
-          real-world site visits.
-        </p>
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-          <Link
-            href="/join"
-            className="rounded-full bg-ucla-gold px-8 py-3 text-base font-semibold text-ucla-blue-darkest shadow-sm transition hover:bg-white"
-          >
-            Join SoCET
-          </Link>
-          <a
-            href="#events"
-            className="py-3 font-semibold text-white underline decoration-ucla-gold decoration-2 underline-offset-4 hover:decoration-white"
-          >
-            See upcoming events
-          </a>
+        <div className="rise mt-10 flex flex-col gap-10 [--rise-delay:180ms] md:flex-row md:items-end md:justify-between">
+          <p className="lede text-[#dcdcdc]">
+            We bring students from every major into Los Angeles&apos;s clean
+            technology sector through education, cross-disciplinary teamwork and
+            real-world site visits.
+          </p>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
+            <Link
+              href="/join"
+              className="btn-outline text-paper hover:border-lime hover:bg-lime hover:text-ink"
+            >
+              Join SoCET
+              <ArrowRight />
+            </Link>
+            <a
+              href="#events"
+              className="eyebrow inline-flex items-center gap-2 py-3 text-paper underline-offset-4 hover:text-lime"
+            >
+              See upcoming events
+              <ArrowDown />
+            </a>
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function ArrowRight() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 16 16"
+      className="size-3.5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    >
+      <path d="M2 8h11M9 4l4 4-4 4" />
+    </svg>
+  );
+}
+
+function ArrowDown() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 16 16"
+      className="size-3.5 motion-safe:animate-bounce"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    >
+      <path d="M8 2v11M4 9l4 4 4-4" />
+    </svg>
   );
 }

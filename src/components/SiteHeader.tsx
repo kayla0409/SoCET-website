@@ -1,28 +1,29 @@
 import Link from "next/link";
 import { navLinks, site } from "@/lib/site";
+import { HeaderShell } from "./HeaderShell";
 
 // Minimal shell for the home page. TS-5 replaces this with the full header and mobile nav.
 export function SiteHeader() {
   return (
-    <header className="border-b border-border bg-background">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3 sm:px-6">
+    <HeaderShell>
+      <div className="container-x flex flex-wrap items-center justify-between gap-x-8 gap-y-1 py-4 sm:py-5">
         <Link
           href="/"
-          className="flex items-center gap-2 text-lg font-bold tracking-tight text-foreground"
+          className="font-display text-base font-extrabold tracking-tight"
         >
-          <span
-            aria-hidden="true"
-            className="inline-block size-3 rounded-full bg-ucla-gold ring-4 ring-ucla-blue"
-          />
           {site.name}
         </Link>
         <nav aria-label="Main">
-          <ul className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium uppercase tracking-wide">
+          <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs font-semibold uppercase tracking-[0.06em] sm:gap-x-7">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-block py-2 text-muted hover:text-accent"
+                  className={
+                    link.href === "/join"
+                      ? "btn-outline px-4 py-2 hover:bg-current/10"
+                      : "inline-block py-2 underline-offset-[6px] hover:underline"
+                  }
                 >
                   {link.label}
                 </Link>
@@ -31,6 +32,6 @@ export function SiteHeader() {
           </ul>
         </nav>
       </div>
-    </header>
+    </HeaderShell>
   );
 }

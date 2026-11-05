@@ -1,5 +1,6 @@
 import { cacheLife } from "next/cache";
 import Link from "next/link";
+import { CircuitLines } from "@/components/decor/Decor";
 import { dayKey, getUpcomingEvents } from "@/lib/events";
 import { getEvents } from "@/server/content";
 import { EventCalendar } from "./EventCalendar";
@@ -28,27 +29,27 @@ export async function UpcomingEvents() {
     <section
       id="events"
       aria-labelledby="events-heading"
-      className="scroll-mt-4 bg-surface-alt py-16 sm:py-20"
+      className="section-y relative isolate overflow-hidden bg-background"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2
-          id="events-heading"
-          className="text-center text-3xl font-bold tracking-tight sm:text-4xl"
-        >
+      <CircuitLines className="-top-4 right-[-5rem] -z-10 w-[min(32rem,70vw)] opacity-30" />
+      <div className="container-x">
+        <h2 id="events-heading" className="display-lg reveal max-w-[12ch]">
           Upcoming events
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-muted">
+        <p className="lede reveal mt-6 text-muted">
           Speaker series, workshops, journal clubs and site tours. Everyone is
           welcome.
         </p>
-        <div className="mt-10 grid gap-8 lg:grid-cols-2">
-          <EventCalendar events={events} todayKey={todayKey} />
-          <div>
-            <h3 className="mb-4 text-xl font-semibold">Coming up</h3>
+        <div className="mt-14 grid items-start gap-6 lg:grid-cols-2">
+          <div className="reveal">
+            <EventCalendar events={events} todayKey={todayKey} />
+          </div>
+          <div className="reveal">
+            <h3 className="eyebrow mb-4 text-muted">Coming up</h3>
             <EventList events={upcoming} />
             <Link
               href="/events"
-              className="mt-6 inline-block font-semibold text-accent underline underline-offset-4"
+              className="btn-outline mt-8 hover:bg-ink hover:text-paper"
             >
               See all events
             </Link>

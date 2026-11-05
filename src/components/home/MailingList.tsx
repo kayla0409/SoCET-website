@@ -1,3 +1,4 @@
+import { TopoLines } from "@/components/decor/Decor";
 import { getMailchimpConfig } from "@/lib/mailchimp";
 import { site, socialLinks } from "@/lib/site";
 import { joinMailingList } from "@/server/mailing-list";
@@ -7,16 +8,15 @@ export function MailingList() {
   return (
     <section
       aria-labelledby="mailing-list-heading"
-      className="bg-ucla-blue-dark py-16 text-white sm:py-20"
+      data-tone="dark"
+      className="tone-dark section-y relative isolate overflow-hidden bg-ink"
     >
-      <div className="mx-auto flex max-w-3xl flex-col items-center px-4 text-center sm:px-6">
-        <h2
-          id="mailing-list-heading"
-          className="text-3xl font-bold tracking-tight sm:text-4xl"
-        >
-          Never miss an event
+      <TopoLines className="top-[-8rem] right-[-10rem] -z-10 w-[min(48rem,110vw)] opacity-70" />
+      <div className="container-x flex flex-col items-start">
+        <h2 id="mailing-list-heading" className="display-lg reveal">
+          Never miss <span className="block text-lime">an event</span>
         </h2>
-        <p className="mt-4 max-w-xl text-lg text-white/90">
+        <p className="lede reveal mt-8 text-muted">
           Join the mailing list for event invites, site-tour sign-ups and club
           news. Open to every UCLA student, any major.
         </p>
@@ -26,20 +26,17 @@ export function MailingList() {
         ) : (
           <a
             href={site.joinFormUrl}
-            className="mt-8 rounded-full border-2 border-ucla-gold px-8 py-3 font-semibold text-ucla-gold transition hover:bg-ucla-gold hover:text-ucla-blue-darkest"
+            className="btn-lime mt-10 hover:-translate-y-0.5 hover:bg-paper hover:border-paper"
           >
             Join the mailing list
           </a>
         )}
-        <p className="mt-8 text-sm text-white/90">
+        <p className="mt-10 text-sm text-muted">
           Or find us on{" "}
           {socialLinks.map((link, index) => (
             <span key={link.href}>
               {index > 0 && (index === socialLinks.length - 1 ? " and " : ", ")}
-              <a
-                href={link.href}
-                className="font-semibold underline underline-offset-4"
-              >
+              <a href={link.href} className="link-u">
                 {link.label}
               </a>
             </span>
