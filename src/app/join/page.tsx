@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { TopoLines } from "@/components/decor/Decor";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -9,24 +10,42 @@ export const metadata: Metadata = {
 };
 
 // Copy needs Niteesh's sign-off (PD-4). Only facts from src/lib/site.ts.
-const linkClass =
-  "font-semibold text-accent underline decoration-2 underline-offset-4 hover:decoration-ucla-gold";
+const linkClass = "link-u";
+
+const darkCard =
+  "tone-dark card-dark relative flex flex-col border border-olive p-7 transition duration-200 hover:-translate-y-1.5 hover:border-lime sm:p-8";
+
+function CardArrow({ className = "text-lime" }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className={`absolute top-7 right-7 size-6 ${className}`}
+    >
+      <path d="M4 12h15M13 6l6 6-6 6" />
+    </svg>
+  );
+}
 
 export default function JoinPage() {
   return (
     <>
-      <section
-        aria-labelledby="join-heading"
-        className="bg-ucla-blue-darkest py-16 text-white sm:py-20"
-      >
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+      {/* Join opens on solid lime: the site's call-to-action color, full bleed. */}
+      <section aria-labelledby="join-heading" className="bg-lime text-ink">
+        <div className="container-x pt-40 pb-20 sm:pt-52 sm:pb-28">
           <h1
             id="join-heading"
-            className="text-4xl font-bold tracking-tight text-balance text-ucla-gold sm:text-5xl"
+            className="display-xl rise text-[clamp(4rem,13vw,10.5rem)]"
           >
-            Join SoCET
+            Join{" "}
+            <span className="bg-ink px-[0.08em] text-lime box-decoration-clone">
+              SoCET
+            </span>
           </h1>
-          <p className="mt-6 text-lg text-pretty text-white">
+          <p className="lede rise mt-10 text-xl font-medium text-ink [--rise-delay:120ms]">
             SoCET is open to all majors. If you care about clean energy and
             technology, you&apos;re welcome here.
           </p>
@@ -35,51 +54,61 @@ export default function JoinPage() {
 
       <section
         aria-labelledby="steps-heading"
-        className="bg-background py-16 sm:py-20"
+        data-tone="dark"
+        className="tone-dark section-y relative isolate overflow-hidden bg-ink"
       >
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <h2
-            id="steps-heading"
-            className="text-3xl font-bold tracking-tight sm:text-4xl"
-          >
+        <TopoLines className="top-[-8rem] right-[-10rem] -z-10 w-[min(48rem,110vw)] opacity-70" />
+        <div className="container-x">
+          <h2 id="steps-heading" className="display-lg reveal">
             How to join
           </h2>
-          <ol className="mt-8 space-y-6">
-            <li className="rounded-2xl border border-border border-t-4 border-t-ucla-gold bg-surface p-6 shadow-sm">
-              <h3 className="text-xl font-semibold">
-                <span className="text-muted">1. </span>Fill out the sign-up form
+          <ol className="mt-14 grid gap-5 lg:grid-cols-3">
+            <li className={`reveal ${darkCard}`}>
+              <CardArrow />
+              <h3 className="pr-10 font-display text-2xl leading-tight font-extrabold tracking-tight">
+                <span className="eyebrow mb-4 block font-display text-lime">
+                  1.{" "}
+                </span>
+                Fill out the sign-up form
               </h3>
-              <p className="mt-3 text-muted">
+              <p className="mt-3 mb-8 text-muted">
                 This signs you up to the club and adds you to the mailing list.
               </p>
               <a
                 href={site.joinFormUrl}
-                className="mt-5 inline-block rounded-full bg-ucla-gold px-8 py-3 font-semibold text-ucla-blue-darkest shadow-sm transition hover:bg-ucla-blue-darkest hover:text-ucla-gold focus-visible:outline-ucla-blue-darkest dark:hover:bg-white dark:hover:text-ucla-blue-darkest"
+                className="btn-lime mt-auto self-start hover:border-paper hover:bg-paper"
               >
                 Open the sign-up form
               </a>
             </li>
-            <li className="rounded-2xl border border-border bg-surface p-6 shadow-sm">
-              <h3 className="text-xl font-semibold">
-                <span className="text-muted">2. </span>Join the Discord
+            <li className={`reveal ${darkCard}`}>
+              <CardArrow />
+              <h3 className="pr-10 font-display text-2xl leading-tight font-extrabold tracking-tight">
+                <span className="eyebrow mb-4 block font-display text-lime">
+                  2.{" "}
+                </span>
+                Join the Discord
               </h3>
               <p className="mt-3 text-muted">Chat with other members.</p>
               <a
                 href={site.discordUrl}
-                className={`mt-5 inline-block ${linkClass}`}
+                className={`mt-8 inline-block self-start ${linkClass}`}
               >
                 Join the SoCET Discord
               </a>
             </li>
-            <li className="rounded-2xl border border-border bg-surface p-6 shadow-sm">
-              <h3 className="text-xl font-semibold">
-                <span className="text-muted">3. </span>Follow us and come to an
-                event
+            <li className="reveal relative flex flex-col rounded-lg border border-lime bg-lime p-7 text-ink transition duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgb(212_255_122/0.6)] sm:p-8">
+              <CardArrow className="text-ink" />
+              <h3 className="pr-10 font-display text-2xl leading-tight font-extrabold tracking-tight">
+                <span className="eyebrow mb-4 block font-display text-olive">
+                  3.{" "}
+                </span>
+                Follow us and come to an event
               </h3>
-              <p className="mt-3 text-muted">
+              <p className="mt-3 text-ink/80">
                 Follow along on Instagram, then come to an upcoming event.
               </p>
-              <p className="mt-5 flex flex-col gap-3 sm:flex-row sm:gap-8">
+              <p className="mt-8 flex flex-col gap-3 [&_a]:text-ink [&_a]:decoration-ink">
                 <a href={site.instagramUrl} className={linkClass}>
                   Follow SoCET on Instagram
                 </a>
@@ -94,22 +123,26 @@ export default function JoinPage() {
 
       <section
         aria-labelledby="next-heading"
-        className="bg-surface-alt py-16 sm:py-20"
+        className="section-y bg-background"
       >
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <h2
-            id="next-heading"
-            className="text-3xl font-bold tracking-tight sm:text-4xl"
-          >
+        <div className="container-x">
+          <h2 id="next-heading" className="display-lg reveal">
             What happens next
           </h2>
-          <ul className="mt-6 list-disc space-y-3 pl-6 text-lg">
-            <li>You&apos;ll get event invites and club news by email.</li>
-            <li>Discord is where members chat.</li>
+          <ul className="mt-12 border-t border-border">
+            <li className="reveal border-b border-border py-6 font-display text-xl font-bold tracking-tight sm:text-2xl">
+              You&apos;ll get event invites and club news by email.
+            </li>
+            <li className="reveal border-b border-border py-6 font-display text-xl font-bold tracking-tight sm:text-2xl">
+              Discord is where members chat.
+            </li>
           </ul>
-          <p className="mt-8 text-lg">
+          <p className="mt-10 text-lg text-muted">
             Questions? Email us at{" "}
-            <a href={`mailto:${site.email}`} className={linkClass}>
+            <a
+              href={`mailto:${site.email}`}
+              className={`break-all ${linkClass}`}
+            >
               {site.email}
             </a>
             .

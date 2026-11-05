@@ -17,23 +17,23 @@ export function EventDetails({
   ended: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-8">
-      <dl className="grid gap-4 rounded-2xl border border-border bg-surface p-6 sm:grid-cols-[auto_1fr] sm:gap-x-6">
-        <dt className="font-semibold">Date</dt>
+    <div className="flex max-w-3xl flex-col gap-10">
+      <dl className="tone-dark card-dark reveal grid gap-x-10 gap-y-1 p-7 sm:grid-cols-[auto_1fr] sm:gap-y-5 sm:p-9">
+        <dt className="eyebrow pt-1 text-lime">Date</dt>
         <dd className="text-muted sm:col-start-2">
           <time dateTime={event.start}>{formatEventLongDate(event)}</time>
         </dd>
-        <dt className="font-semibold">Time</dt>
+        <dt className="eyebrow mt-4 pt-1 text-lime sm:mt-0">Time</dt>
         <dd className="text-muted sm:col-start-2">
           {formatEventTimeRangeWithZone(event)}
         </dd>
-        <dt className="font-semibold">Location</dt>
+        <dt className="eyebrow mt-4 pt-1 text-lime sm:mt-0">Location</dt>
         <dd className="text-muted sm:col-start-2">{event.location}</dd>
         {event.type && (
           <>
-            <dt className="font-semibold">Type</dt>
+            <dt className="eyebrow mt-4 pt-1 text-lime sm:mt-0">Type</dt>
             <dd className="sm:col-start-2">
-              <span className="inline-block rounded-full bg-accent-soft px-2 py-0.5 text-sm font-semibold">
+              <span className="tag text-lime">
                 {eventTypeLabels[event.type]}
               </span>
             </dd>
@@ -42,13 +42,15 @@ export function EventDetails({
       </dl>
 
       {event.description && (
-        <p className="text-lg text-pretty">{event.description}</p>
+        <p className="lede max-w-2xl text-pretty text-muted">
+          {event.description}
+        </p>
       )}
 
       {ended ? (
         <p
           role="status"
-          className="rounded-2xl border border-dashed border-border bg-surface-alt p-4 text-muted"
+          className="rounded-lg border border-dashed border-muted/50 p-5 text-muted"
         >
           This event has ended.
         </p>
@@ -58,7 +60,7 @@ export function EventDetails({
             href={event.rsvpUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-fit items-center gap-2 rounded-full bg-ucla-gold px-6 py-3 font-semibold text-ucla-blue-darkest hover:bg-ucla-gold/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="btn-lime w-fit border-ink bg-ink text-paper hover:-translate-y-0.5 hover:border-lime hover:bg-lime hover:text-ink"
           >
             RSVP on Partiful
             <span aria-hidden="true">↗</span>

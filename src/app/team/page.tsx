@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { TopoLines } from "@/components/decor/Decor";
 import { TeamGrid } from "@/components/team/TeamGrid";
 import { getTeam } from "@/server/content";
 
@@ -14,18 +15,21 @@ export default async function TeamPage() {
 
   return (
     <>
+      {/* Team opens near-black with contour lines and an oversized "team". */}
       <section
         aria-labelledby="team-heading"
-        className="bg-ucla-blue-darkest py-16 text-white sm:py-20"
+        data-tone="dark"
+        className="tone-dark relative isolate overflow-hidden bg-ink"
       >
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <h1
-            id="team-heading"
-            className="text-4xl font-bold tracking-tight text-balance text-ucla-gold sm:text-5xl"
-          >
-            Meet the team
+        <TopoLines className="top-[-6rem] left-[-12rem] -z-10 w-[min(52rem,120vw)] opacity-60" />
+        <div className="container-x flex flex-col items-end pt-40 pb-20 text-right sm:pt-52 sm:pb-28">
+          <h1 id="team-heading" className="rise">
+            <span className="display-md block text-paper">Meet the</span>{" "}
+            <span className="display-xl block text-[clamp(5rem,17vw,13rem)] text-lime">
+              team
+            </span>
           </h1>
-          <p className="mt-6 text-lg text-pretty text-white">
+          <p className="lede rise mt-8 text-muted [--rise-delay:120ms]">
             SoCET is run by UCLA students who plan our events, site visits and
             speaker series.
           </p>
@@ -34,24 +38,18 @@ export default async function TeamPage() {
 
       <section
         aria-labelledby="officers-heading"
-        className="bg-background py-16 sm:py-20"
+        className="section-y bg-background"
       >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2
-            id="officers-heading"
-            className="text-center text-3xl font-bold tracking-tight sm:text-4xl"
-          >
+        <div className="container-x">
+          <h2 id="officers-heading" className="display-lg reveal">
             Officers
           </h2>
-          <div className="mt-10">
+          <div className="mt-14">
             <TeamGrid members={members} />
           </div>
-          <p className="mt-12 text-center text-lg">
+          <p className="mt-14 text-lg text-muted">
             Want to get involved?{" "}
-            <Link
-              href="/join"
-              className="font-semibold text-accent underline decoration-2 underline-offset-4 hover:decoration-ucla-gold"
-            >
+            <Link href="/join" className="link-u">
               Join SoCET
             </Link>
           </p>

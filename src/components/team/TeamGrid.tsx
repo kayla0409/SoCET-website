@@ -13,7 +13,7 @@ export function initials(name: string): string {
 
 function TeamMemberCard({ member }: { member: TeamMember }) {
   return (
-    <li className="flex flex-col items-center rounded-2xl border border-border border-t-4 border-t-ucla-gold bg-surface p-6 text-center shadow-sm">
+    <li className="reveal tone-dark card-dark flex flex-col p-6 transition-transform duration-200 hover:-translate-y-1.5 sm:p-7">
       {member.photo ? (
         <Image
           src={member.photo}
@@ -21,22 +21,24 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
           width={160}
           height={160}
           sizes="160px"
-          className="size-32 rounded-full object-cover"
+          className="size-28 rounded-md object-cover grayscale transition duration-200 hover:grayscale-0"
         />
       ) : (
         // The name is right below, so the initials are decorative.
         <div
           aria-hidden="true"
-          className="flex size-32 items-center justify-center rounded-full bg-accent-soft text-3xl font-bold text-accent"
+          className="flex size-28 items-center justify-center rounded-md border border-lime/50 font-display text-4xl font-black tracking-tight text-lime"
         >
           {initials(member.name)}
         </div>
       )}
-      <h3 className="mt-5 text-xl font-semibold">{member.name}</h3>
-      <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-accent">
-        {member.role}
-      </p>
-      {member.bio && <p className="mt-3 text-muted">{member.bio}</p>}
+      <h3 className="mt-10 font-display text-2xl font-extrabold tracking-tight">
+        {member.name}
+      </h3>
+      <p className="tag mt-3 self-start text-lime">{member.role}</p>
+      {member.bio && (
+        <p className="mt-4 leading-relaxed text-muted">{member.bio}</p>
+      )}
     </li>
   );
 }
@@ -44,16 +46,13 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
 export function TeamGrid({ members }: { members: TeamMember[] }) {
   if (members.length === 0) {
     return (
-      <div className="mx-auto max-w-xl rounded-2xl border border-dashed border-border bg-surface p-8 text-center">
-        <p className="text-lg font-semibold">
+      <div className="tone-dark card-dark max-w-xl border border-olive p-8">
+        <p className="font-display text-2xl font-extrabold tracking-tight">
           Officer profiles are coming soon.
         </p>
         <p className="mt-3 text-muted">
           In the meantime, reach the officers at{" "}
-          <a
-            href={`mailto:${site.email}`}
-            className="font-semibold text-accent underline decoration-2 underline-offset-4 hover:decoration-ucla-gold"
-          >
+          <a href={`mailto:${site.email}`} className="link-u break-all">
             {site.email}
           </a>
           .
@@ -63,7 +62,7 @@ export function TeamGrid({ members }: { members: TeamMember[] }) {
   }
 
   return (
-    <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {members.map((member) => (
         <TeamMemberCard key={member.id} member={member} />
       ))}

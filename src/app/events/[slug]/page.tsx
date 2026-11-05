@@ -60,26 +60,27 @@ export default async function EventPage({
           __html: serializeJsonLd(eventJsonLd(event)),
         }}
       />
+      {/* An event opens on a light gray band, like a printed ticket stub. */}
       <section
         aria-labelledby="event-heading"
-        className="bg-ucla-blue-darkest py-16 text-white sm:py-20"
+        className="border-b border-border bg-surface-alt"
       >
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="container-x pt-40 pb-16 sm:pt-48 sm:pb-20">
           <Link
             href="/events"
-            className="text-sm font-semibold text-white underline underline-offset-4 hover:decoration-ucla-gold"
+            className="tag rise text-ink transition-colors duration-200 hover:bg-ink hover:text-paper"
           >
             <span aria-hidden="true">← </span>All events
           </Link>
           <h1
             id="event-heading"
-            className="mt-4 text-4xl font-bold tracking-tight text-balance text-ucla-gold sm:text-5xl"
+            className="display-lg rise mt-8 max-w-[18ch] text-balance text-ink [--rise-delay:80ms]"
           >
             {event.title}
           </h1>
         </div>
       </section>
-      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="container-x section-y">
         <EventDetails event={event} ended={ended} />
       </div>
     </>

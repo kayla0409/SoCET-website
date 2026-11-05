@@ -2,8 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { site, socialLinks } from "@/lib/site";
 
-const linkClass =
-  "font-semibold text-accent underline underline-offset-4 hover:no-underline";
+const linkClass = "link-u";
 
 const discord = socialLinks[0];
 const instagram = socialLinks[1];
@@ -64,15 +63,15 @@ const items: { question: string; answer: ReactNode }[] = [
 /** Native <details>/<summary>: keyboard operable and no JavaScript needed. */
 export function Faq() {
   return (
-    <div className="mt-8 divide-y divide-border rounded-2xl border border-border bg-surface">
+    <div className="mt-14 divide-y divide-border border-y border-border">
       {items.map((item) => (
         <details key={item.question} className="group">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left text-lg font-semibold marker:content-none hover:bg-surface-alt group-open:rounded-b-none focus-visible:outline-3 focus-visible:outline-offset-[-3px] [&::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-left font-display text-xl font-bold tracking-tight transition-colors duration-200 marker:content-none hover:text-muted focus-visible:outline-3 focus-visible:outline-offset-2 sm:text-2xl [&::-webkit-details-marker]:hidden">
             {item.question}
             <svg
               aria-hidden="true"
               viewBox="0 0 20 20"
-              className="size-5 shrink-0 text-accent transition-transform group-open:rotate-180"
+              className="size-9 shrink-0 rounded-full border border-current p-2 text-foreground transition-transform duration-200 group-open:rotate-180 group-open:bg-lime group-open:border-lime group-open:text-ink"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -82,7 +81,9 @@ export function Faq() {
               <path d="m5 8 5 5 5-5" />
             </svg>
           </summary>
-          <div className="px-5 pb-5 text-muted">{item.answer}</div>
+          <div className="max-w-2xl pb-7 text-lg leading-relaxed text-muted">
+            {item.answer}
+          </div>
         </details>
       ))}
     </div>
