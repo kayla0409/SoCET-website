@@ -9,6 +9,7 @@ type Tone = "light" | "dark";
 function initialTone(pathname: string): Tone {
   return pathname === "/about" ||
     pathname === "/join" ||
+    pathname === "/projects" ||
     pathname.startsWith("/events/")
     ? "light"
     : "dark";

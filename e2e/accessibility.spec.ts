@@ -8,8 +8,11 @@ const routes = [
   "/about",
   "/events",
   "/events/2026-04-22-earth-day",
+  "/projects",
+  "/resources",
   "/join",
   "/team",
+  "/contact",
 ];
 
 // WCAG 2.2 A and AA, the level the plan targets.
