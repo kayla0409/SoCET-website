@@ -41,21 +41,21 @@ export default async function EventsPage() {
         className="tone-dark relative isolate overflow-hidden bg-ink"
       >
         <CircuitLines className="bottom-[-5rem] left-[-6rem] -z-10 w-[min(38rem,90vw)] opacity-35" />
-        <div className="container-x grid gap-10 pt-40 pb-20 sm:pt-52 sm:pb-24 md:grid-cols-[3fr_2fr] md:items-end">
+        <div className="container-x grid gap-10 pt-32 pb-12 sm:pt-36 sm:pb-16 md:grid-cols-[3fr_2fr] md:items-end">
           <h1
             id="events-page-heading"
-            className="display-xl rise text-[clamp(4rem,14vw,11rem)] text-paper"
+            className="display-xl rise text-[clamp(3rem,9vw,6.5rem)] text-paper"
           >
             Events
           </h1>
-          <p className="lede rise border-l-2 border-lime pl-6 text-muted [--rise-delay:120ms]">
+          <p className="lede rise border-l-2 border-gold pl-6 text-muted [--rise-delay:120ms]">
             Speaker series, workshops, journal clubs and site tours. Everyone is
             welcome.
           </p>
         </div>
       </section>
 
-      <div className="container-x section-y flex flex-col gap-24">
+      <div className="container-x section-y flex flex-col gap-16">
         {total === 0 ? (
           <p className="max-w-2xl rounded-lg border border-dashed border-muted/50 p-6 text-muted">
             No events are posted yet. Questions? Email{" "}

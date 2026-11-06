@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site, socialLinks } from "@/lib/site";
 
 export function SiteFooter() {
@@ -16,6 +17,14 @@ export function SiteFooter() {
           <div className="flex flex-col gap-4 md:col-start-4">
             <p className="eyebrow text-muted">Stay in touch</p>
             <ul className="flex flex-col gap-2 text-sm font-medium">
+              <li>
+                <Link
+                  href="/contact"
+                  className="inline-block py-1 underline-offset-4 transition-colors duration-200 hover:underline"
+                >
+                  Contact
+                </Link>
+              </li>
               {socialLinks.map((link) => (
                 <li key={link.href}>
                   <a

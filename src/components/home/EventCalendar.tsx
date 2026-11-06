@@ -54,7 +54,7 @@ export function EventCalendar({ events, todayKey }: EventCalendarProps) {
         <button
           type="button"
           onClick={() => changeMonth(-1)}
-          className="flex size-11 items-center justify-center border border-border text-xl transition-colors duration-200 hover:border-lime hover:text-lime"
+          className="flex size-11 items-center justify-center border border-border text-xl transition-colors duration-200 hover:border-gold hover:text-gold"
           aria-label="Previous month"
         >
           <span aria-hidden="true">‹</span>
@@ -69,7 +69,7 @@ export function EventCalendar({ events, todayKey }: EventCalendarProps) {
         <button
           type="button"
           onClick={() => changeMonth(1)}
-          className="flex size-11 items-center justify-center border border-border text-xl transition-colors duration-200 hover:border-lime hover:text-lime"
+          className="flex size-11 items-center justify-center border border-border text-xl transition-colors duration-200 hover:border-gold hover:text-gold"
           aria-label="Next month"
         >
           <span aria-hidden="true">›</span>
@@ -191,7 +191,7 @@ function DayCell({
       aria-current={isToday ? "date" : undefined}
       aria-label={`${formatDayLabel(dayKey)}, ${eventCount} ${eventCount === 1 ? "event" : "events"}`}
       className={`relative mx-auto flex size-10 items-center justify-center rounded-full text-sm font-bold transition-colors duration-200 ${todayRing} ${
-        isSelected ? "bg-paper text-ink" : "bg-lime text-ink hover:bg-paper"
+        isSelected ? "bg-paper text-ink" : "bg-gold text-ink hover:bg-paper"
       }`}
     >
       {dayNumber}

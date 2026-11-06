@@ -63,7 +63,7 @@ const items: { question: string; answer: ReactNode }[] = [
 /** Native <details>/<summary>: keyboard operable and no JavaScript needed. */
 export function Faq() {
   return (
-    <div className="mt-14 divide-y divide-border border-y border-border">
+    <div className="mt-9 divide-y divide-border border-y border-border">
       {items.map((item) => (
         <details key={item.question} className="group">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-left font-display text-xl font-bold tracking-tight transition-colors duration-200 marker:content-none hover:text-muted focus-visible:outline-3 focus-visible:outline-offset-2 sm:text-2xl [&::-webkit-details-marker]:hidden">
@@ -71,7 +71,7 @@ export function Faq() {
             <svg
               aria-hidden="true"
               viewBox="0 0 20 20"
-              className="size-9 shrink-0 rounded-full border border-current p-2 text-foreground transition-transform duration-200 group-open:rotate-180 group-open:bg-lime group-open:border-lime group-open:text-ink"
+              className="size-9 shrink-0 rounded-full border border-current p-2 text-foreground transition-transform duration-200 group-open:rotate-180 group-open:bg-gold group-open:border-gold group-open:text-ink"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
