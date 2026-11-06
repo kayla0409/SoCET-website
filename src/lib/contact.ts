@@ -16,12 +16,7 @@ export type ContactField = keyof typeof CONTACT_LIMITS;
 export const CONTACT_SUCCESS_MESSAGE =
   "Thanks, we received your message! Please give us 3–5 business days to get back to you.";
 
-export const CONTACT_FIELDS: readonly ContactField[] = [
-  "name",
-  "email",
-  "subject",
-  "message",
-];
+export const CONTACT_FIELDS = Object.keys(CONTACT_LIMITS) as ContactField[];
 
 /** Collapses runs of whitespace (including line breaks) to single spaces. */
 const singleLine = (value: string) => value.replace(/\s+/g, " ").trim();
@@ -80,6 +75,15 @@ export const contactSchema = z.object({
 export type ContactInput = z.infer<typeof contactSchema>;
 export type ContactValues = Record<ContactField, string>;
 export type ContactFieldErrors = Partial<Record<ContactField, string>>;
+
+/** Reads the contact fields out of a form, as plain strings. */
+export function readContactValues(data: {
+  get(name: string): FormDataEntryValue | null;
+}): ContactValues {
+  return Object.fromEntries(
+    CONTACT_FIELDS.map((field) => [field, String(data.get(field) ?? "")]),
+  ) as ContactValues;
+}
 
 /** Validates raw values. Returns the cleaned data or one error per field. */
 export function validateContact(

@@ -192,6 +192,19 @@ describe("sendContactMessage", () => {
     );
   });
 
+  it("does not count failed sends against the visitor's limit", async () => {
+    mocks.send.mockRejectedValue(new Error("network down"));
+    for (let i = 0; i < 4; i++) {
+      const state = await sendContactMessage(idle, form(valid));
+      expect(state.message).toMatch(/couldn't send/i);
+    }
+
+    mocks.send.mockResolvedValue({ data: { id: "email_1" }, error: null });
+    expect((await sendContactMessage(idle, form(valid))).status).toBe(
+      "success",
+    );
+  });
+
   it("keeps what was typed when Resend returns an error", async () => {
     mocks.send.mockResolvedValue({
       data: null,

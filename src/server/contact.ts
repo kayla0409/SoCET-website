@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { Resend } from "resend";
 import {
   CONTACT_SUCCESS_MESSAGE,
+  readContactValues,
   validateContact,
   type ContactFieldErrors,
   type ContactValues,
@@ -33,15 +34,12 @@ export async function sendContactMessage(
 ): Promise<ContactState> {
   // Honeypot: real visitors never see or fill this field. Pretend it worked.
   if (formData.get("website")) {
+    // Logged so lost real messages (autofill filling the field) are noticeable.
+    console.warn("Contact form: honeypot field was filled; message dropped.");
     return { status: "success", message: CONTACT_SUCCESS_MESSAGE };
   }
 
-  const values: ContactValues = {
-    name: String(formData.get("name") ?? ""),
-    email: String(formData.get("email") ?? ""),
-    subject: String(formData.get("subject") ?? ""),
-    message: String(formData.get("message") ?? ""),
-  };
+  const values = readContactValues(formData);
 
   const result = validateContact(values);
   if (!result.ok) {
@@ -53,8 +51,9 @@ export async function sendContactMessage(
     };
   }
 
-  const { allowed } = limiter.check(clientIp(await headers()));
-  if (!allowed) {
+  // With no IP to key on, skip the limit rather than lock everyone out together.
+  const ip = clientIp(await headers());
+  if (ip && !limiter.check(ip).allowed) {
     return {
       status: "error",
       message:
@@ -86,5 +85,7 @@ export async function sendContactMessage(
     return { status: "error", message: SEND_ERROR, values };
   }
 
+  // Only messages that were actually sent use up the visitor's budget.
+  if (ip) limiter.record(ip);
   return { status: "success", message: CONTACT_SUCCESS_MESSAGE };
 }
