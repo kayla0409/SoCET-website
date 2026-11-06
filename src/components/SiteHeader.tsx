@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { navLinks, site } from "@/lib/site";
 import { HeaderShell } from "./HeaderShell";
@@ -9,8 +10,17 @@ export function SiteHeader() {
       <div className="container-x flex flex-wrap items-center justify-between gap-x-8 gap-y-1 py-3 sm:py-4">
         <Link
           href="/"
-          className="font-display text-base font-extrabold tracking-tight"
+          className="flex items-center gap-2.5 font-display text-base font-extrabold tracking-tight"
         >
+          {/* The club name sits right next to it, so the logo is decorative. */}
+          <Image
+            src="/socet-logo.png"
+            alt=""
+            width={40}
+            height={40}
+            preload
+            className="size-9 sm:size-10"
+          />
           {site.name}
         </Link>
         <nav aria-label="Main">
