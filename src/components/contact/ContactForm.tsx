@@ -13,6 +13,7 @@ import { FormField } from "@/components/forms/FormField";
 import {
   CONTACT_FIELDS,
   CONTACT_LIMITS,
+  readContactValues,
   validateContact,
   type ContactField,
   type ContactFieldErrors,
@@ -113,12 +114,7 @@ function ContactFormRound({
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     const data = new FormData(event.currentTarget);
-    const result = validateContact({
-      name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
-      subject: String(data.get("subject") ?? ""),
-      message: String(data.get("message") ?? ""),
-    });
+    const result = validateContact(readContactValues(data));
     if (!result.ok) {
       // Stop here: no request is sent until the fields look right.
       event.preventDefault();
