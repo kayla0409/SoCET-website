@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useId } from "react";
+import { FormField } from "@/components/forms/FormField";
 import { site } from "@/lib/site";
 import type { MailingListState } from "@/server/mailing-list";
 
@@ -37,7 +38,7 @@ export function MailingListForm({ action }: MailingListFormProps) {
       className="mt-10 w-full max-w-xl text-left"
     >
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field
+        <FormField
           id={`${id}-name`}
           name="name"
           label="Name"
@@ -45,7 +46,7 @@ export function MailingListForm({ action }: MailingListFormProps) {
           defaultValue={state.values?.name}
           error={nameError}
         />
-        <Field
+        <FormField
           id={`${id}-email`}
           name="email"
           label="Email"
@@ -103,52 +104,5 @@ export function MailingListForm({ action }: MailingListFormProps) {
         news, and you can unsubscribe anytime.
       </p>
     </form>
-  );
-}
-
-interface FieldProps {
-  id: string;
-  name: string;
-  label: string;
-  type?: string;
-  autoComplete: string;
-  defaultValue?: string;
-  error?: string;
-}
-
-function Field({
-  id,
-  name,
-  label,
-  type = "text",
-  autoComplete,
-  defaultValue,
-  error,
-}: FieldProps) {
-  const errorId = `${id}-error`;
-  return (
-    <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="eyebrow text-muted">
-        {label}
-      </label>
-      <input
-        id={id}
-        name={name}
-        type={type}
-        required
-        autoComplete={autoComplete}
-        defaultValue={defaultValue}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={error ? errorId : undefined}
-        className={`border bg-graphite px-4 py-3 text-paper transition-colors duration-200 placeholder:text-fog focus:border-lime ${
-          error ? "border-lime" : "border-border"
-        }`}
-      />
-      {error && (
-        <p id={errorId} className="text-sm font-semibold text-lime">
-          {error}
-        </p>
-      )}
-    </div>
   );
 }

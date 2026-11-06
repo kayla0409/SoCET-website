@@ -1,4 +1,6 @@
 import { events, type ClubEvent } from "@/content/events";
+import { projects, type Project } from "@/content/projects";
+import { clubResources, readingList, type Resource } from "@/content/resources";
 import { team, type TeamMember } from "@/content/team";
 
 /**
@@ -20,4 +22,17 @@ export async function getEvent(id: string): Promise<ClubEvent | undefined> {
  */
 export async function getTeam(): Promise<TeamMember[]> {
   return [...team];
+}
+
+/** The only way pages read projects, in display order (BE-10 swaps in the DB). */
+export async function getProjects(): Promise<Project[]> {
+  return [...projects];
+}
+
+/** The only way pages read resources (BE-10 swaps in the DB). */
+export async function getResources(): Promise<{
+  club: Resource[];
+  reading: Resource[];
+}> {
+  return { club: [...clubResources], reading: [...readingList] };
 }
