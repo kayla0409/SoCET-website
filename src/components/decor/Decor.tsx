@@ -9,7 +9,7 @@ const decorative = {
   focusable: false,
 } as const;
 
-/** A glowing lime light streak sweeping from top-center to bottom-right. */
+/** A glowing gold light streak sweeping from top-center to bottom-right. */
 export function LightStreak({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -20,10 +20,10 @@ export function LightStreak({ className = "" }: { className?: string }) {
     >
       <defs>
         <linearGradient id="streak-fade" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#d4ff7a" stopOpacity="0" />
-          <stop offset="0.35" stopColor="#d4ff7a" stopOpacity="0.9" />
-          <stop offset="0.75" stopColor="#e9ffb8" stopOpacity="1" />
-          <stop offset="1" stopColor="#d4ff7a" stopOpacity="0.2" />
+          <stop offset="0" stopColor="#ffd100" stopOpacity="0" />
+          <stop offset="0.35" stopColor="#ffd100" stopOpacity="0.9" />
+          <stop offset="0.75" stopColor="#ffe680" stopOpacity="1" />
+          <stop offset="1" stopColor="#ffd100" stopOpacity="0.2" />
         </linearGradient>
         <filter
           id="streak-blur-wide"
@@ -155,7 +155,7 @@ export function Skyline({ className = "" }: { className?: string }) {
       className={`pointer-events-none absolute inset-x-0 bottom-0 h-[clamp(140px,22vw,260px)] w-full ${className}`}
     >
       {/* Line-art panel outlines, right side */}
-      <g fill="none" stroke="#f0f0f0" strokeOpacity="0.35" strokeWidth="1.2">
+      <g fill="none" stroke="#f5f3ee" strokeOpacity="0.35" strokeWidth="1.2">
         {[0, 1, 2].map((row) =>
           [0, 1, 2, 3].map((col) => {
             const x = 1060 + col * 92 + row * 26;
@@ -172,7 +172,7 @@ export function Skyline({ className = "" }: { className?: string }) {
           }),
         )}
       </g>
-      <g fill="#0b0b0b">
+      <g fill="#07121f">
         <Turbine x={210} base={200} height={150} />
         <Turbine x={430} base={200} height={110} />
         <Turbine x={600} base={200} height={170} />
@@ -218,7 +218,7 @@ export function CircuitLines({ className = "" }: { className?: string }) {
       className={`pointer-events-none absolute ${className}`}
     >
       <g
-        stroke="#7fae3c"
+        stroke="#4a90c8"
         strokeWidth="1.3"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -227,7 +227,7 @@ export function CircuitLines({ className = "" }: { className?: string }) {
           <path key={d} d={d} />
         ))}
       </g>
-      <g fill="#7fae3c">
+      <g fill="#4a90c8">
         {nodes.map(([cx, cy]) => (
           <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3.5" />
         ))}
@@ -236,7 +236,7 @@ export function CircuitLines({ className = "" }: { className?: string }) {
   );
 }
 
-/** Lime topographic contour lines. */
+/** Gold topographic contour lines. */
 export function TopoLines({ className = "" }: { className?: string }) {
   const rings = Array.from({ length: 11 }, (_, i) => i);
   return (
@@ -246,7 +246,7 @@ export function TopoLines({ className = "" }: { className?: string }) {
       fill="none"
       className={`pointer-events-none absolute ${className}`}
     >
-      <g stroke="#d4ff7a" strokeWidth="1.1">
+      <g stroke="#ffd100" strokeWidth="1.1">
         {rings.map((i) => {
           const s = 1 + i * 0.32;
           return (

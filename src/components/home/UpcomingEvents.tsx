@@ -40,7 +40,7 @@ export async function UpcomingEvents() {
           Speaker series, workshops, journal clubs and site tours. Everyone is
           welcome.
         </p>
-        <div className="mt-14 grid items-start gap-6 lg:grid-cols-2">
+        <div className="mt-9 grid items-start gap-6 lg:grid-cols-2">
           <div className="reveal">
             <EventCalendar events={events} todayKey={todayKey} />
           </div>

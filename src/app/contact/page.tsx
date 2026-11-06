@@ -21,13 +21,13 @@ export default function ContactPage() {
         className="tone-dark relative isolate overflow-hidden bg-ink"
       >
         <CircuitLines className="top-24 right-[-5rem] -z-10 w-[min(30rem,80vw)] opacity-30" />
-        <div className="container-x pt-40 pb-20 sm:pt-52 sm:pb-24">
-          <p className="eyebrow rise text-lime">01 — Contact</p>
+        <div className="container-x pt-32 pb-12 sm:pt-36 sm:pb-16">
+          <p className="eyebrow rise text-gold">01 — Contact</p>
           <h1
             id="contact-heading"
             className="display-xl rise mt-6 text-paper [--rise-delay:80ms]"
           >
-            Get in <span className="text-lime">touch</span>
+            Get in <span className="text-gold">touch</span>
           </h1>
           <p className="lede rise mt-8 text-muted [--rise-delay:160ms]">
             Questions about events, membership or working with us? Send the
@@ -53,7 +53,7 @@ export default function ContactPage() {
               Every field is required. We use your email only to reply to you.
             </p>
 
-            <h3 className="eyebrow mt-14 text-muted">Other ways to reach us</h3>
+            <h3 className="eyebrow mt-9 text-muted">Other ways to reach us</h3>
             <ul className="mt-4 flex flex-col gap-3">
               <li>
                 <a href={`mailto:${site.email}`} className="link-u break-all">

@@ -25,7 +25,7 @@ export default async function TeamPage() {
         <div className="container-x flex flex-col items-end pt-40 pb-20 text-right sm:pt-52 sm:pb-28">
           <h1 id="team-heading" className="rise">
             <span className="display-md block text-paper">Meet the</span>{" "}
-            <span className="display-xl block text-[clamp(5rem,17vw,13rem)] text-lime">
+            <span className="display-xl block text-[clamp(3.5rem,11vw,7.5rem)] text-gold">
               team
             </span>
           </h1>
@@ -44,10 +44,10 @@ export default async function TeamPage() {
           <h2 id="officers-heading" className="display-lg reveal">
             Officers
           </h2>
-          <div className="mt-14">
+          <div className="mt-9">
             <TeamGrid members={members} />
           </div>
-          <p className="mt-14 text-lg text-muted">
+          <p className="mt-9 text-lg text-muted">
             Want to get involved?{" "}
             <Link href="/join" className="link-u">
               Join SoCET

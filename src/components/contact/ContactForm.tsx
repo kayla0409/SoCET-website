@@ -96,14 +96,14 @@ function ContactFormRound({
           ref={successRef}
           role="status"
           tabIndex={-1}
-          className="font-display text-2xl leading-snug font-extrabold tracking-tight text-lime sm:text-3xl"
+          className="font-display text-2xl leading-snug font-extrabold tracking-tight text-gold sm:text-3xl"
         >
           {state.message}
         </p>
         <button
           type="button"
           onClick={onSendAnother}
-          className="btn-outline mt-10 text-paper hover:border-lime hover:bg-lime hover:text-ink"
+          className="btn-outline mt-7 text-paper hover:border-gold hover:bg-gold hover:text-ink"
         >
           Send another message
         </button>
@@ -195,7 +195,7 @@ function ContactFormRound({
         type="submit"
         disabled={pending}
         aria-disabled={pending}
-        className="btn-lime mt-8 w-full justify-center hover:border-paper hover:bg-paper disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+        className="btn-gold mt-8 w-full justify-center hover:border-paper hover:bg-paper disabled:cursor-wait disabled:opacity-70 sm:w-auto"
       >
         {pending ? "Sending…" : "Send message"}
       </button>
@@ -204,7 +204,7 @@ function ContactFormRound({
         ref={statusRef}
         tabIndex={-1}
         aria-live="polite"
-        className="mt-4 min-h-6 text-sm font-semibold text-lime"
+        className="mt-4 min-h-6 text-sm font-semibold text-gold"
       >
         {statusMessage}
       </p>

@@ -24,13 +24,13 @@ export default async function ResourcesPage() {
         className="tone-dark bg-concrete relative isolate overflow-hidden"
       >
         <Skyline className="bottom-0 left-0 -z-10 w-full opacity-40" />
-        <div className="container-x pt-40 pb-24 sm:pt-52 sm:pb-32">
-          <p className="eyebrow rise text-lime">01 — Resources</p>
+        <div className="container-x pt-32 pb-12 sm:pt-36 sm:pb-16">
+          <p className="eyebrow rise text-gold">01 — Resources</p>
           <h1
             id="resources-heading"
             className="display-xl rise mt-6 max-w-[12ch] text-paper [--rise-delay:80ms]"
           >
-            Learn, <span className="text-lime">connect</span>, get involved
+            Learn, <span className="text-gold">connect</span>, get involved
           </h1>
           <p className="lede rise mt-8 text-paper/80 [--rise-delay:160ms]">
             Links for getting into the club, plus readings from our journal
@@ -48,7 +48,7 @@ export default async function ResourcesPage() {
           <h2 id="club-resources-heading" className="display-lg reveal mt-4">
             Club resources
           </h2>
-          <ul className="mt-14 grid gap-5 sm:grid-cols-2">
+          <ul className="mt-9 grid gap-5 sm:grid-cols-2">
             {club.map((resource) => (
               <ResourceCard key={resource.href} resource={resource} />
             ))}
@@ -66,7 +66,7 @@ export default async function ResourcesPage() {
             Reading list
           </h2>
           {reading.length === 0 ? (
-            <p className="mt-14 max-w-2xl rounded-lg border border-dashed border-muted/50 p-6 text-muted">
+            <p className="mt-9 max-w-2xl rounded-lg border border-dashed border-muted/50 p-6 text-muted">
               Journal-club readings are coming soon. Have one to suggest?{" "}
               <Link href="/contact" className="link-u">
                 Send it to us
@@ -78,7 +78,7 @@ export default async function ResourcesPage() {
               .
             </p>
           ) : (
-            <ul className="mt-14 border-t border-border">
+            <ul className="mt-9 border-t border-border">
               {reading.map((resource) => (
                 <li
                   key={resource.href}
@@ -109,7 +109,7 @@ function ResourceCard({ resource }: { resource: Resource }) {
     "group tone-dark card-dark flex h-full flex-col p-7 transition-transform duration-200 hover:-translate-y-1.5";
   const body = (
     <>
-      <span className="font-display text-2xl font-extrabold tracking-tight group-hover:text-lime">
+      <span className="font-display text-2xl font-extrabold tracking-tight group-hover:text-gold">
         {resource.title}
         <span aria-hidden="true"> {internal ? "→" : "↗"}</span>
       </span>

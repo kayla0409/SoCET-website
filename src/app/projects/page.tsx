@@ -16,12 +16,12 @@ export default async function ProjectsPage() {
 
   return (
     <>
-      {/* Projects opens on solid lime with ink type and a big counter. */}
+      {/* Projects opens on solid gold with ink type and a big counter. */}
       <section
         aria-labelledby="projects-heading"
-        className="relative overflow-hidden bg-lime text-ink"
+        className="relative overflow-hidden bg-gold text-ink"
       >
-        <div className="container-x grid gap-10 pt-40 pb-20 sm:pt-52 sm:pb-24 md:grid-cols-[3fr_1fr] md:items-end">
+        <div className="container-x grid gap-10 pt-32 pb-12 sm:pt-36 sm:pb-16 md:grid-cols-[3fr_1fr] md:items-end">
           <div>
             <p className="eyebrow rise">01 — Projects</p>
             <h1
@@ -37,7 +37,7 @@ export default async function ProjectsPage() {
           </div>
           <p
             aria-hidden="true"
-            className="font-display text-[clamp(6rem,18vw,14rem)] leading-[0.8] font-black tracking-[-0.06em] md:text-right"
+            className="font-display text-[clamp(4rem,11vw,8rem)] leading-[0.8] font-black tracking-[-0.06em] md:text-right"
           >
             {String(projects.length).padStart(2, "0")}
           </p>
@@ -55,11 +55,11 @@ export default async function ProjectsPage() {
           </h2>
 
           {projects.length === 0 ? (
-            <p className="mt-14 max-w-2xl rounded-lg border border-dashed border-muted/50 p-6 text-muted">
+            <p className="mt-9 max-w-2xl rounded-lg border border-dashed border-muted/50 p-6 text-muted">
               No projects are posted yet. Check back soon.
             </p>
           ) : (
-            <ol className="mt-14 border-t border-border">
+            <ol className="mt-9 border-t border-border">
               {projects.map((project, index) => (
                 <ProjectRow key={project.id} project={project} index={index} />
               ))}
@@ -75,22 +75,22 @@ export default async function ProjectsPage() {
       >
         <div className="container-x flex flex-col items-start">
           <h2 id="project-idea-heading" className="display-lg reveal">
-            Have a project <span className="block text-lime">idea?</span>
+            Have a project <span className="block text-gold">idea?</span>
           </h2>
           <p className="lede reveal mt-8 text-muted">
             Members can pitch projects to the officers. Tell us what you want to
             work on.
           </p>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-7 flex flex-wrap gap-4">
             <Link
               href="/contact"
-              className="btn-lime hover:-translate-y-0.5 hover:border-paper hover:bg-paper"
+              className="btn-gold hover:-translate-y-0.5 hover:border-paper hover:bg-paper"
             >
               Pitch a project
             </Link>
             <a
               href={site.joinFormUrl}
-              className="btn-outline text-paper hover:border-lime hover:bg-lime hover:text-ink"
+              className="btn-outline text-paper hover:border-gold hover:bg-gold hover:text-ink"
             >
               Join SoCET
             </a>
@@ -107,7 +107,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
     <li className="reveal grid gap-4 border-b border-border py-10 sm:grid-cols-[minmax(7rem,12rem)_1fr] sm:gap-10 sm:py-12">
       <span
         aria-hidden="true"
-        className="font-display text-[clamp(3.5rem,8vw,5.5rem)] leading-[0.85] font-black tracking-[-0.05em]"
+        className="font-display text-[clamp(2.25rem,5vw,3.5rem)] leading-[0.85] font-black tracking-[-0.05em]"
       >
         {String(index + 1).padStart(2, "0")}
       </span>

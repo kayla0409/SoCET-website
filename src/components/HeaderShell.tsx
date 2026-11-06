@@ -5,7 +5,7 @@ import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
 type Tone = "light" | "dark";
 
-/** Pages that open on a light or lime section; everything else opens dark. */
+/** Pages that open on a light or gold section; everything else opens dark. */
 function initialTone(pathname: string): Tone {
   return pathname === "/about" ||
     pathname === "/join" ||

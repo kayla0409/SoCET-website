@@ -6,7 +6,7 @@ import { HeaderShell } from "./HeaderShell";
 export function SiteHeader() {
   return (
     <HeaderShell>
-      <div className="container-x flex flex-wrap items-center justify-between gap-x-8 gap-y-1 py-4 sm:py-5">
+      <div className="container-x flex flex-wrap items-center justify-between gap-x-8 gap-y-1 py-3 sm:py-4">
         <Link
           href="/"
           className="font-display text-base font-extrabold tracking-tight"
