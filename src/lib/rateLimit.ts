@@ -8,8 +8,10 @@
  * abuse ever gets past it.
  */
 export interface RateLimiter {
-  /** Records an attempt for `key` and says whether it is allowed. */
+  /** Says whether `key` may make another attempt. Does not count one. */
   check(key: string): { allowed: boolean; retryAfterMs: number };
+  /** Counts an attempt for `key`. Call it only for attempts that should use up the budget. */
+  record(key: string): void;
 }
 
 export function createRateLimiter({
@@ -25,19 +27,27 @@ export function createRateLimiter({
   maxKeys?: number;
 }): RateLimiter {
   const hits = new Map<string, number[]>();
+  const recent = (key: string, time: number) =>
+    (hits.get(key) ?? []).filter((t) => time - t < windowMs);
 
   return {
     check(key) {
       const time = now();
-      const recent = (hits.get(key) ?? []).filter((t) => time - t < windowMs);
-
-      if (recent.length >= limit) {
-        hits.set(key, recent);
-        return { allowed: false, retryAfterMs: windowMs - (time - recent[0]) };
+      const inWindow = recent(key, time);
+      if (inWindow.length >= limit) {
+        return {
+          allowed: false,
+          retryAfterMs: windowMs - (time - inWindow[0]),
+        };
       }
+      return { allowed: true, retryAfterMs: 0 };
+    },
 
-      recent.push(time);
-      hits.set(key, recent);
+    record(key) {
+      const time = now();
+      const inWindow = recent(key, time);
+      inWindow.push(time);
+      hits.set(key, inWindow);
 
       if (hits.size > maxKeys) {
         // Drop keys whose newest hit is outside the window.
@@ -45,13 +55,19 @@ export function createRateLimiter({
           if (time - times[times.length - 1] >= windowMs) hits.delete(k);
         }
       }
-      return { allowed: true, retryAfterMs: 0 };
     },
   };
 }
 
-/** The visitor's IP from proxy headers (Vercel sets x-forwarded-for). */
-export function clientIp(headers: Pick<Headers, "get">): string {
-  const forwarded = headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  return forwarded || headers.get("x-real-ip")?.trim() || "unknown";
+/**
+ * The visitor's IP, or null when the proxy didn't say. x-real-ip is set by the
+ * platform proxy; otherwise we take the LAST x-forwarded-for entry, the one
+ * our own proxy appended, because earlier entries are client-supplied and can
+ * be spoofed to dodge the limit.
+ */
+export function clientIp(headers: Pick<Headers, "get">): string | null {
+  const real = headers.get("x-real-ip")?.trim();
+  if (real) return real;
+  const forwarded = headers.get("x-forwarded-for")?.split(",");
+  return forwarded?.at(-1)?.trim() || null;
 }
