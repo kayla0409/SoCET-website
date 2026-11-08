@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-  "Contact SoCET at UCLA. Ask the officers about events, membership or partnerships, or pitch an idea for the club, and we'll reply by email.",
+    "Contact SoCET at UCLA. Ask the officers about events, membership or partnerships, or pitch an idea for the club, and we'll reply by email.",
 };
 
 const topics = [
@@ -21,7 +21,7 @@ const topics = [
   {
     title: "Partnerships",
     body: "We'd love to hear from companies, labs and speakers, whether it's a site visit, a talk or a project together. We're always up for new connections!",
-  }
+  },
 ];
 // Copy needs Niteesh's sign-off (PD-6).
 export default function ContactPage() {
@@ -36,8 +36,8 @@ export default function ContactPage() {
         }
         lede={
           <>
-            Have questions or ideas? Write directly to the officers 
-            and we&apos;ll get back to you within a few days by email!
+            Have questions or ideas? Write directly to the officers and
+            we&apos;ll get back to you within a few days by email!
           </>
         }
       />
@@ -48,10 +48,7 @@ export default function ContactPage() {
       >
         <div className="container-x grid gap-14 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
           <div>
-            <h2
-              id="message-heading"
-              className="display-md reveal mt-4"
-            >
+            <h2 id="message-heading" className="display-md reveal mt-4">
               What you can write about
             </h2>
             <ul className="mt-8 border-t border-border">
