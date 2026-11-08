@@ -65,7 +65,7 @@ export default async function EventPage({
         aria-labelledby="event-heading"
         className="border-b border-border bg-surface-alt"
       >
-        <div className="container-x pt-40 pb-16 sm:pt-48 sm:pb-20">
+        <div className="container-x pt-32 pb-12 sm:pt-36 sm:pb-16">
           <Link
             href="/events"
             className="tag rise text-ink transition-colors duration-200 hover:bg-ink hover:text-paper"

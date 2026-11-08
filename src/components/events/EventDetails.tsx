@@ -19,21 +19,21 @@ export function EventDetails({
   return (
     <div className="flex max-w-3xl flex-col gap-10">
       <dl className="tone-dark card-dark reveal grid gap-x-10 gap-y-1 p-7 sm:grid-cols-[auto_1fr] sm:gap-y-5 sm:p-9">
-        <dt className="eyebrow pt-1 text-lime">Date</dt>
+        <dt className="eyebrow pt-1 text-gold">Date</dt>
         <dd className="text-muted sm:col-start-2">
           <time dateTime={event.start}>{formatEventLongDate(event)}</time>
         </dd>
-        <dt className="eyebrow mt-4 pt-1 text-lime sm:mt-0">Time</dt>
+        <dt className="eyebrow mt-4 pt-1 text-gold sm:mt-0">Time</dt>
         <dd className="text-muted sm:col-start-2">
           {formatEventTimeRangeWithZone(event)}
         </dd>
-        <dt className="eyebrow mt-4 pt-1 text-lime sm:mt-0">Location</dt>
+        <dt className="eyebrow mt-4 pt-1 text-gold sm:mt-0">Location</dt>
         <dd className="text-muted sm:col-start-2">{event.location}</dd>
         {event.type && (
           <>
-            <dt className="eyebrow mt-4 pt-1 text-lime sm:mt-0">Type</dt>
+            <dt className="eyebrow mt-4 pt-1 text-gold sm:mt-0">Type</dt>
             <dd className="sm:col-start-2">
-              <span className="tag text-lime">
+              <span className="tag text-gold">
                 {eventTypeLabels[event.type]}
               </span>
             </dd>
@@ -60,7 +60,7 @@ export function EventDetails({
             href={event.rsvpUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-lime w-fit border-ink bg-ink text-paper hover:-translate-y-0.5 hover:border-lime hover:bg-lime hover:text-ink"
+            className="btn-gold w-fit border-ink bg-ink text-paper hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink"
           >
             RSVP on Partiful
             <span aria-hidden="true">↗</span>

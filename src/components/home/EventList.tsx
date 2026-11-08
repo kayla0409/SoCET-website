@@ -26,9 +26,9 @@ export function EventList({ events }: { events: ClubEvent[] }) {
           >
             <div
               aria-hidden="true"
-              className="flex w-16 shrink-0 flex-col items-center justify-center rounded-md border border-lime/60 py-2 text-paper"
+              className="flex w-16 shrink-0 flex-col items-center justify-center rounded-md border border-gold/60 py-2 text-paper"
             >
-              <span className="eyebrow text-lime">{tile.month}</span>
+              <span className="eyebrow text-gold">{tile.month}</span>
               <span className="font-display text-3xl font-black tracking-tight">
                 {tile.day}
               </span>

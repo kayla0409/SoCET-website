@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact/ContactForm";
-import { CircuitLines } from "@/components/decor/Decor";
 import { site, socialLinks } from "@/lib/site";
 import { sendContactMessage } from "@/server/contact";
+import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -14,27 +14,20 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* Contact opens near-black with a short, direct headline. */}
-      <section
-        aria-labelledby="contact-heading"
-        data-tone="dark"
-        className="tone-dark relative isolate overflow-hidden bg-ink"
-      >
-        <CircuitLines className="top-24 right-[-5rem] -z-10 w-[min(30rem,80vw)] opacity-30" />
-        <div className="container-x pt-40 pb-20 sm:pt-52 sm:pb-24">
-          <p className="eyebrow rise text-lime">01 — Contact</p>
-          <h1
-            id="contact-heading"
-            className="display-xl rise mt-6 text-paper [--rise-delay:80ms]"
-          >
-            Get in <span className="text-lime">touch</span>
-          </h1>
-          <p className="lede rise mt-8 text-muted [--rise-delay:160ms]">
+      <PageHeader
+        id="contact-heading"
+        title={
+          <>
+            Get in <span className="text-gold">touch</span>
+          </>
+        }
+        lede={
+          <>
             Questions about events, membership or working with us? Send the
             officers a message and we&apos;ll reply by email.
-          </p>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       <section
         aria-labelledby="message-heading"
@@ -53,7 +46,7 @@ export default function ContactPage() {
               Every field is required. We use your email only to reply to you.
             </p>
 
-            <h3 className="eyebrow mt-14 text-muted">Other ways to reach us</h3>
+            <h3 className="eyebrow mt-9 text-muted">Other ways to reach us</h3>
             <ul className="mt-4 flex flex-col gap-3">
               <li>
                 <a href={`mailto:${site.email}`} className="link-u break-all">

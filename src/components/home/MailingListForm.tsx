@@ -24,7 +24,7 @@ export function MailingListForm({ action }: MailingListFormProps) {
     return (
       <p
         role="status"
-        className="mt-10 rounded-lg border border-lime/50 px-6 py-4 text-lg font-semibold text-lime"
+        className="mt-7 rounded-lg border border-gold/50 px-6 py-4 text-lg font-semibold text-gold"
       >
         {state.message}
       </p>
@@ -35,7 +35,7 @@ export function MailingListForm({ action }: MailingListFormProps) {
     <form
       action={formAction}
       noValidate
-      className="mt-10 w-full max-w-xl text-left"
+      className="mt-7 w-full max-w-xl text-left"
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <FormField
@@ -74,14 +74,14 @@ export function MailingListForm({ action }: MailingListFormProps) {
       <button
         type="submit"
         disabled={pending}
-        className="btn-lime mt-6 w-full justify-center hover:border-paper hover:bg-paper disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+        className="btn-gold mt-6 w-full justify-center hover:border-paper hover:bg-paper disabled:cursor-wait disabled:opacity-70 sm:w-auto"
       >
         {pending ? "Joining…" : "Join the mailing list"}
       </button>
 
       <p
         aria-live="polite"
-        className="mt-4 min-h-6 text-sm font-semibold text-lime"
+        className="mt-4 min-h-6 text-sm font-semibold text-gold"
       >
         {state.status === "error" && (
           <>

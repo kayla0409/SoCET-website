@@ -49,12 +49,12 @@ export function EventCalendar({ events, todayKey }: EventCalendarProps) {
   };
 
   return (
-    <div className="tone-dark card-dark p-5 sm:p-7">
+    <div className="tone-dark card-dark p-5 sm:p-6">
       <div className="flex items-center justify-between gap-2">
         <button
           type="button"
           onClick={() => changeMonth(-1)}
-          className="flex size-11 items-center justify-center border border-border text-xl transition-colors duration-200 hover:border-lime hover:text-lime"
+          className="flex size-10 items-center justify-center border border-border text-xl transition-colors duration-200 hover:border-gold hover:text-gold"
           aria-label="Previous month"
         >
           <span aria-hidden="true">‹</span>
@@ -69,7 +69,7 @@ export function EventCalendar({ events, todayKey }: EventCalendarProps) {
         <button
           type="button"
           onClick={() => changeMonth(1)}
-          className="flex size-11 items-center justify-center border border-border text-xl transition-colors duration-200 hover:border-lime hover:text-lime"
+          className="flex size-10 items-center justify-center border border-border text-xl transition-colors duration-200 hover:border-gold hover:text-gold"
           aria-label="Next month"
         >
           <span aria-hidden="true">›</span>
@@ -77,13 +77,13 @@ export function EventCalendar({ events, todayKey }: EventCalendarProps) {
       </div>
 
       <table
-        className="mt-4 w-full table-fixed border-collapse text-center"
+        className="mt-3 w-full table-fixed border-collapse text-center"
         aria-labelledby={headingId}
       >
         <thead>
           <tr>
             {weekdays.map(([short, long]) => (
-              <th key={long} scope="col" className="eyebrow pb-3 text-muted">
+              <th key={long} scope="col" className="eyebrow pb-2 text-muted">
                 <span aria-hidden="true">{short}</span>
                 <span className="sr-only">{long}</span>
               </th>
@@ -115,7 +115,7 @@ export function EventCalendar({ events, todayKey }: EventCalendarProps) {
 
       <div
         aria-live="polite"
-        className="mt-4 min-h-12 border-t border-border pt-4 text-sm"
+        className="mt-3 min-h-10 border-t border-border pt-3 text-sm"
       >
         {selectedDay ? (
           <>
@@ -176,7 +176,7 @@ function DayCell({
     return (
       <span
         aria-current={isToday ? "date" : undefined}
-        className={`mx-auto flex size-10 items-center justify-center rounded-full text-sm text-muted ${todayRing}`}
+        className={`mx-auto flex size-9 items-center justify-center rounded-full text-sm text-muted ${todayRing}`}
       >
         {dayNumber}
       </span>
@@ -190,8 +190,8 @@ function DayCell({
       aria-pressed={isSelected}
       aria-current={isToday ? "date" : undefined}
       aria-label={`${formatDayLabel(dayKey)}, ${eventCount} ${eventCount === 1 ? "event" : "events"}`}
-      className={`relative mx-auto flex size-10 items-center justify-center rounded-full text-sm font-bold transition-colors duration-200 ${todayRing} ${
-        isSelected ? "bg-paper text-ink" : "bg-lime text-ink hover:bg-paper"
+      className={`relative mx-auto flex size-9 items-center justify-center rounded-full text-sm font-bold transition-colors duration-200 ${todayRing} ${
+        isSelected ? "bg-paper text-ink" : "bg-gold text-ink hover:bg-paper"
       }`}
     >
       {dayNumber}

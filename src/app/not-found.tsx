@@ -25,7 +25,7 @@ export default function NotFound() {
       <div className="container-x flex flex-1 flex-col items-start justify-center pt-36 pb-24">
         <p
           aria-hidden="true"
-          className="display-xl rise text-[clamp(7rem,26vw,20rem)] leading-[0.8] text-lime"
+          className="display-xl rise text-[clamp(5rem,18vw,12rem)] leading-[0.8] text-gold"
         >
           404
         </p>
@@ -41,7 +41,7 @@ export default function NotFound() {
         <Link
           href="/"
           data-button="primary"
-          className="btn-lime mt-10 hover:-translate-y-0.5 hover:border-paper hover:bg-paper"
+          className="btn-gold mt-7 hover:-translate-y-0.5 hover:border-paper hover:bg-paper"
         >
           Back to home
         </Link>
@@ -51,7 +51,7 @@ export default function NotFound() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="eyebrow inline-block py-1 text-paper underline underline-offset-4 hover:text-lime"
+                  className="eyebrow inline-block py-1 text-paper underline underline-offset-4 hover:text-gold"
                 >
                   {link.label}
                 </Link>
@@ -59,7 +59,7 @@ export default function NotFound() {
             ))}
           </ul>
         </nav>
-        <p className="mt-10 text-[#dcdcdc]">
+        <p className="mt-7 text-[#dcdcdc]">
           Think this is a mistake? Email{" "}
           <a href={`mailto:${site.email}`} className="link-u break-all">
             {site.email}
