@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact/ContactForm";
-import { site, socialLinks } from "@/lib/site";
 import { sendContactMessage } from "@/server/contact";
 import { PageHeader } from "@/components/PageHeader";
 
@@ -24,7 +23,6 @@ const topics = [
     body: "We'd love to hear from companies, labs and speakers, whether it's a site visit, a talk or a project together. We're always up for new connections!",
   }
 ];
-
 // Copy needs Niteesh's sign-off (PD-6).
 export default function ContactPage() {
   return (
