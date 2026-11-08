@@ -11,6 +11,7 @@ export const site = {
   instagramUrl: "https://www.instagram.com/socetucla/",
   linkedinUrl:
     "https://www.linkedin.com/company/society-of-clean-energy-and-technology-at-ucla",
+  linktreeUrl: "https://linktr.ee/socet.ucla",
 } as const;
 
 export const navLinks = [
@@ -24,7 +25,8 @@ export const navLinks = [
 ] as const;
 
 export const socialLinks = [
-  { href: site.discordUrl, label: "Discord" },
   { href: site.instagramUrl, label: "Instagram" },
   { href: site.linkedinUrl, label: "LinkedIn" },
+  { href: site.linktreeUrl, label: "Linktree" },
+  { href: site.discordUrl, label: "Discord" },
 ] as const;
