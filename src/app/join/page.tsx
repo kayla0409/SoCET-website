@@ -118,7 +118,7 @@ export default function JoinPage() {
 
       <section
         aria-labelledby="next-heading"
-        className="section-y bg-background"
+        className="section-y border-t border-border bg-surface-alt"
       >
         <div className="container-x">
           <h2 id="next-heading" className="display-lg reveal">

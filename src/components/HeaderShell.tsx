@@ -5,14 +5,13 @@ import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
 type Tone = "light" | "dark";
 
-/** Pages that open on a light or gold section; everything else opens dark. */
+/**
+ * Server-rendered guess at the tone under the header. Every page opens on the
+ * dark PageHeader or hero except an event detail page, which opens on a light
+ * band. The layout effect below corrects this on the client either way.
+ */
 function initialTone(pathname: string): Tone {
-  return pathname === "/about" ||
-    pathname === "/join" ||
-    pathname === "/projects" ||
-    pathname.startsWith("/events/")
-    ? "light"
-    : "dark";
+  return pathname.startsWith("/events/") ? "light" : "dark";
 }
 
 /**
