@@ -57,7 +57,7 @@ export default function ContactPage() {
                   key={topic.title}
                   className="reveal grid grid-cols-[2.25rem_1fr] border-b border-border py-5"
                 >
-                  <span className="eyebrow pt-0.5 font-display text-gold">
+                  <span className="eyebrow pt-0.5 font-display text-accent">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
