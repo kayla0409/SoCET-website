@@ -261,25 +261,25 @@ body {
         transparent 127px
       ),
       /* Vertical lines: panel edges every 120px, cell lines every 30px */
-      linear-gradient(
-        90deg,
-        var(--grid-blue) 0 1.5px,
-        transparent 1.5px 30px,
-        var(--grid-blue-faint) 30px 31px,
-        transparent 31px 60px,
-        var(--grid-blue-faint) 60px 61px,
-        transparent 61px 90px,
-        var(--grid-gold-faint) 90px 91px,
-        transparent 91px 120px,
-        var(--grid-gold) 120px 121.5px,
-        transparent 121.5px 150px,
-        var(--grid-blue-faint) 150px 151px,
-        transparent 151px 180px,
-        var(--grid-gold-faint) 180px 181px,
-        transparent 181px 210px,
-        var(--grid-blue-faint) 210px 211px,
-        transparent 211px
-      );
+        linear-gradient(
+          90deg,
+          var(--grid-blue) 0 1.5px,
+          transparent 1.5px 30px,
+          var(--grid-blue-faint) 30px 31px,
+          transparent 31px 60px,
+          var(--grid-blue-faint) 60px 61px,
+          transparent 61px 90px,
+          var(--grid-gold-faint) 90px 91px,
+          transparent 91px 120px,
+          var(--grid-gold) 120px 121.5px,
+          transparent 121.5px 150px,
+          var(--grid-blue-faint) 150px 151px,
+          transparent 151px 180px,
+          var(--grid-gold-faint) 180px 181px,
+          transparent 181px 210px,
+          var(--grid-blue-faint) 210px 211px,
+          transparent 211px
+        );
     background-size:
       100% 144px,
       240px 100%;

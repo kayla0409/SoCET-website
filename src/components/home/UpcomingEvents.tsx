@@ -52,8 +52,8 @@ export async function UpcomingEvents() {
             Upcoming events
           </h2>
           <p className="lede reveal mt-5 text-muted">
-            Speaker series, workshops, journal clubs and site tours. Everyone
-            is welcome.
+            Speaker series, workshops, journal clubs and site tours. Everyone is
+            welcome.
           </p>
         </div>
         <div className="reveal lg:col-start-1 lg:row-span-2 lg:row-start-1">
