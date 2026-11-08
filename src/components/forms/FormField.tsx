@@ -23,7 +23,7 @@ interface FormFieldProps {
 }
 
 const controlClass =
-  "border bg-graphite px-4 py-3 text-paper transition-colors duration-200 placeholder:text-fog focus:border-lime";
+  "border bg-graphite px-4 py-3 text-paper transition-colors duration-200 placeholder:text-fog focus:border-gold";
 
 export function FormField({
   id,
@@ -54,7 +54,7 @@ export function FormField({
     onChange,
     "aria-invalid": error ? true : undefined,
     "aria-describedby": describedBy,
-    className: `${controlClass} ${error ? "border-lime" : "border-border"}`,
+    className: `${controlClass} ${error ? "border-gold" : "border-border"}`,
   } as const;
 
   return (
@@ -72,7 +72,7 @@ export function FormField({
         <input {...shared} type={type} />
       )}
       {error && (
-        <p id={errorId} className="text-sm font-semibold text-lime">
+        <p id={errorId} className="text-sm font-semibold text-gold">
           {error}
         </p>
       )}

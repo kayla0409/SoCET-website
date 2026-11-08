@@ -27,15 +27,15 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
         // The name is right below, so the initials are decorative.
         <div
           aria-hidden="true"
-          className="flex size-28 items-center justify-center rounded-md border border-lime/50 font-display text-4xl font-black tracking-tight text-lime"
+          className="flex size-28 items-center justify-center rounded-md border border-gold/50 font-display text-4xl font-black tracking-tight text-gold"
         >
           {initials(member.name)}
         </div>
       )}
-      <h3 className="mt-10 font-display text-2xl font-extrabold tracking-tight">
+      <h3 className="mt-7 font-display text-2xl font-extrabold tracking-tight">
         {member.name}
       </h3>
-      <p className="tag mt-3 self-start text-lime">{member.role}</p>
+      <p className="tag mt-3 self-start text-gold">{member.role}</p>
       {member.bio && (
         <p className="mt-4 leading-relaxed text-muted">{member.bio}</p>
       )}
@@ -46,7 +46,7 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
 export function TeamGrid({ members }: { members: TeamMember[] }) {
   if (members.length === 0) {
     return (
-      <div className="tone-dark card-dark max-w-xl border border-olive p-8">
+      <div className="tone-dark card-dark max-w-xl border border-blue p-8">
         <p className="font-display text-2xl font-extrabold tracking-tight">
           Officer profiles are coming soon.
         </p>

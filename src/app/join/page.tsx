@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { TopoLines } from "@/components/decor/Decor";
 import { site } from "@/lib/site";
+import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Join",
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 const linkClass = "link-u";
 
 const darkCard =
-  "tone-dark card-dark relative flex flex-col border border-olive p-7 transition duration-200 hover:-translate-y-1.5 hover:border-lime sm:p-8";
+  "tone-dark card-dark relative flex flex-col border border-blue p-7 transition duration-200 hover:-translate-y-1.5 hover:border-gold sm:p-8";
 
-function CardArrow({ className = "text-lime" }: { className?: string }) {
+function CardArrow({ className = "text-gold" }: { className?: string }) {
   return (
     <svg
       aria-hidden="true"
@@ -33,40 +33,35 @@ function CardArrow({ className = "text-lime" }: { className?: string }) {
 export default function JoinPage() {
   return (
     <>
-      {/* Join opens on solid lime: the site's call-to-action color, full bleed. */}
-      <section aria-labelledby="join-heading" className="bg-lime text-ink">
-        <div className="container-x pt-40 pb-20 sm:pt-52 sm:pb-28">
-          <h1
-            id="join-heading"
-            className="display-xl rise text-[clamp(4rem,13vw,10.5rem)]"
-          >
-            Join{" "}
-            <span className="bg-ink px-[0.08em] text-lime box-decoration-clone">
-              SoCET
-            </span>
-          </h1>
-          <p className="lede rise mt-10 text-xl font-medium text-ink [--rise-delay:120ms]">
+      <PageHeader
+        id="join-heading"
+        title={
+          <>
+            Join <span className="text-gold">SoCET</span>
+          </>
+        }
+        lede={
+          <>
             SoCET is open to all majors. If you care about clean energy and
             technology, you&apos;re welcome here.
-          </p>
-        </div>
-      </section>
+          </>
+        }
+      />
 
+      {/* Light paper section with the solar-panel floor grid, filling one screen below the fixed header; the step cards stay dark. */}
       <section
         aria-labelledby="steps-heading"
-        data-tone="dark"
-        className="tone-dark section-y relative isolate overflow-hidden bg-ink"
+        className="bg-solar section-y flex min-h-[calc(100svh-4.5rem)] flex-col justify-center overflow-hidden bg-background"
       >
-        <TopoLines className="top-[-8rem] right-[-10rem] -z-10 w-[min(48rem,110vw)] opacity-70" />
-        <div className="container-x">
+        <div className="container-x w-full">
           <h2 id="steps-heading" className="display-lg reveal">
             How to join
           </h2>
-          <ol className="mt-14 grid gap-5 lg:grid-cols-3">
+          <ol className="mt-9 grid gap-5 lg:grid-cols-3">
             <li className={`reveal ${darkCard}`}>
               <CardArrow />
               <h3 className="pr-10 font-display text-2xl leading-tight font-extrabold tracking-tight">
-                <span className="eyebrow mb-4 block font-display text-lime">
+                <span className="eyebrow mb-4 block font-display text-gold">
                   1.{" "}
                 </span>
                 Fill out the sign-up form
@@ -76,7 +71,7 @@ export default function JoinPage() {
               </p>
               <a
                 href={site.joinFormUrl}
-                className="btn-lime mt-auto self-start hover:border-paper hover:bg-paper"
+                className="btn-gold mt-auto self-start hover:border-paper hover:bg-paper"
               >
                 Open the sign-up form
               </a>
@@ -84,7 +79,7 @@ export default function JoinPage() {
             <li className={`reveal ${darkCard}`}>
               <CardArrow />
               <h3 className="pr-10 font-display text-2xl leading-tight font-extrabold tracking-tight">
-                <span className="eyebrow mb-4 block font-display text-lime">
+                <span className="eyebrow mb-4 block font-display text-gold">
                   2.{" "}
                 </span>
                 Join the Discord
@@ -97,10 +92,10 @@ export default function JoinPage() {
                 Join the SoCET Discord
               </a>
             </li>
-            <li className="reveal relative flex flex-col rounded-lg border border-lime bg-lime p-7 text-ink transition duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgb(212_255_122/0.6)] sm:p-8">
+            <li className="reveal relative flex flex-col rounded-lg border border-gold-soft bg-gold-soft p-7 text-ink transition duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgb(255_209_0/0.6)] sm:p-8">
               <CardArrow className="text-ink" />
               <h3 className="pr-10 font-display text-2xl leading-tight font-extrabold tracking-tight">
-                <span className="eyebrow mb-4 block font-display text-olive">
+                <span className="eyebrow mb-4 block font-display text-blue-deep">
                   3.{" "}
                 </span>
                 Follow us and come to an event
@@ -123,13 +118,13 @@ export default function JoinPage() {
 
       <section
         aria-labelledby="next-heading"
-        className="section-y bg-background"
+        className="section-y border-t border-border bg-surface-alt"
       >
         <div className="container-x">
           <h2 id="next-heading" className="display-lg reveal">
             What happens next
           </h2>
-          <ul className="mt-12 border-t border-border">
+          <ul className="mt-8 border-t border-border">
             <li className="reveal border-b border-border py-6 font-display text-xl font-bold tracking-tight sm:text-2xl">
               You&apos;ll get event invites and club news by email.
             </li>
@@ -137,7 +132,7 @@ export default function JoinPage() {
               Discord is where members chat.
             </li>
           </ul>
-          <p className="mt-10 text-lg text-muted">
+          <p className="mt-7 text-lg text-muted">
             Questions? Email us at{" "}
             <a
               href={`mailto:${site.email}`}

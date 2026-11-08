@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { LightStreak, Skyline } from "@/components/decor/Decor";
+import { Skyline, Sun } from "@/components/decor/Decor";
 import { site } from "@/lib/site";
 
-/** Splits "… at UCLA" so the last line can be set in lime. Text is unchanged. */
+/** Splits "… at UCLA" so the last line can be set in gold. Text is unchanged. */
 function splitTail(name: string): [string, string] {
   const at = name.lastIndexOf(" at ");
   return at === -1 ? [name, ""] : [name.slice(0, at), name.slice(at + 1)];
@@ -16,17 +16,17 @@ export function Hero() {
       data-tone="dark"
       className="tone-dark bg-concrete relative isolate flex min-h-[100svh] flex-col overflow-hidden"
     >
-      <LightStreak className="-z-10 max-sm:opacity-45" />
+      <Sun className="-z-10 max-sm:opacity-60" />
       {/* Soft scrim behind the copy so it reads over the lighter top of the gradient. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgb(17_17_17/0.55)_0%,rgb(17_17_17/0.2)_45%,transparent_70%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgb(11_27_46/0.55)_0%,rgb(11_27_46/0.2)_45%,transparent_70%)]"
       />
       <Skyline className="-z-10" />
 
-      <div className="container-x flex flex-1 flex-col justify-end pt-36 pb-[clamp(170px,24vw,290px)]">
+      <div className="container-x flex flex-1 flex-col justify-center pt-28 pb-[clamp(200px,27vw,340px)] translate-y-6">
         <p className="rise flex flex-wrap gap-2">
-          <span className="tag bg-ink/45 text-lime backdrop-blur-sm">
+          <span className="tag bg-ink/45 text-gold backdrop-blur-sm">
             UCLA student organization
           </span>
           <span className="sr-only"> · </span>
@@ -36,17 +36,17 @@ export function Hero() {
         </p>
         <h1
           id="hero-heading"
-          className="display-xl rise mt-7 text-paper [--rise-delay:80ms] sm:max-w-[15ch]"
+          className="display-xl rise mt-7 text-paper [--rise-delay:80ms] text-balance md:whitespace-nowrap"
         >
           {lead}
           {tail && (
             <>
               {" "}
-              <span className="block text-lime">{tail}</span>
+              <span className="block text-gold">{tail}</span>
             </>
           )}
         </h1>
-        <div className="rise mt-10 flex flex-col gap-10 [--rise-delay:180ms] md:flex-row md:items-end md:justify-between">
+        <div className="rise mt-7 flex flex-col gap-10 [--rise-delay:180ms] md:flex-row md:items-end md:justify-between">
           <p className="lede text-[#dcdcdc]">
             We bring students from every major into Los Angeles&apos;s clean
             technology sector through education, cross-disciplinary teamwork and
@@ -55,14 +55,14 @@ export function Hero() {
           <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
             <Link
               href="/join"
-              className="btn-outline text-paper hover:border-lime hover:bg-lime hover:text-ink"
+              className="btn-outline text-paper hover:border-gold hover:bg-gold hover:text-ink"
             >
               Join SoCET
               <ArrowRight />
             </Link>
             <a
               href="#events"
-              className="eyebrow inline-flex items-center gap-2 py-3 text-paper underline-offset-4 hover:text-lime"
+              className="eyebrow inline-flex items-center gap-2 py-3 text-paper underline-offset-4 hover:text-gold"
             >
               See upcoming events
               <ArrowDown />
