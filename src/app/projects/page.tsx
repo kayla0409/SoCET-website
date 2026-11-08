@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Project } from "@/content/projects";
 import { site } from "@/lib/site";
 import { getProjects } from "@/server/content";
+import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -16,33 +17,15 @@ export default async function ProjectsPage() {
 
   return (
     <>
-      {/* Projects opens on solid gold with ink type and a big counter. */}
-      <section
-        aria-labelledby="projects-heading"
-        className="relative overflow-hidden bg-gold text-ink"
-      >
-        <div className="container-x grid gap-10 pt-32 pb-12 sm:pt-36 sm:pb-16 md:grid-cols-[3fr_1fr] md:items-end">
-          <div>
-            <p className="eyebrow rise">01 — Projects</p>
-            <h1
-              id="projects-heading"
-              className="display-xl rise mt-6 [--rise-delay:80ms]"
-            >
-              What we build
-            </h1>
-            <p className="lede rise mt-8 max-w-2xl [--rise-delay:160ms]">
-              Members from every major team up on hands-on clean energy and
-              climate work, on campus and around LA.
-            </p>
-          </div>
-          <p
-            aria-hidden="true"
-            className="font-display text-[clamp(4rem,11vw,8rem)] leading-[0.8] font-black tracking-[-0.06em] md:text-right"
-          >
-            {String(projects.length).padStart(2, "0")}
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        id="projects-heading"
+        title={
+          <>
+            What we <span className="text-gold">build</span>
+          </>
+        }
+        lede="Members from every major team up on hands-on clean energy and climate work, on campus and around LA."
+      />
 
       <section
         aria-labelledby="project-list-heading"

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { TopoLines } from "@/components/decor/Decor";
 import { site } from "@/lib/site";
+import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Join",
@@ -33,32 +33,27 @@ function CardArrow({ className = "text-gold" }: { className?: string }) {
 export default function JoinPage() {
   return (
     <>
-      {/* Join opens on solid gold: the site's call-to-action color, full bleed. */}
-      <section aria-labelledby="join-heading" className="bg-gold text-ink">
-        <div className="container-x pt-32 pb-12 sm:pt-36 sm:pb-16">
-          <h1
-            id="join-heading"
-            className="display-xl rise text-[clamp(3rem,9vw,6.5rem)]"
-          >
-            Join{" "}
-            <span className="bg-ink px-[0.08em] text-gold box-decoration-clone">
-              SoCET
-            </span>
-          </h1>
-          <p className="lede rise mt-7 text-xl font-medium text-ink [--rise-delay:120ms]">
+      <PageHeader
+        id="join-heading"
+        title={
+          <>
+            Join <span className="text-gold">SoCET</span>
+          </>
+        }
+        lede={
+          <>
             SoCET is open to all majors. If you care about clean energy and
             technology, you&apos;re welcome here.
-          </p>
-        </div>
-      </section>
+          </>
+        }
+      />
 
+      {/* Light paper section with the solar-panel floor grid, filling one screen below the fixed header; the step cards stay dark. */}
       <section
         aria-labelledby="steps-heading"
-        data-tone="dark"
-        className="tone-dark section-y relative isolate overflow-hidden bg-ink"
+        className="bg-solar section-y flex min-h-[calc(100svh-4.5rem)] flex-col justify-center overflow-hidden bg-background"
       >
-        <TopoLines className="top-[-8rem] right-[-10rem] -z-10 w-[min(48rem,110vw)] opacity-70" />
-        <div className="container-x">
+        <div className="container-x w-full">
           <h2 id="steps-heading" className="display-lg reveal">
             How to join
           </h2>
@@ -97,7 +92,7 @@ export default function JoinPage() {
                 Join the SoCET Discord
               </a>
             </li>
-            <li className="reveal relative flex flex-col rounded-lg border border-gold bg-gold p-7 text-ink transition duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgb(255_209_0/0.6)] sm:p-8">
+            <li className="reveal relative flex flex-col rounded-lg border border-gold-soft bg-gold-soft p-7 text-ink transition duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgb(255_209_0/0.6)] sm:p-8">
               <CardArrow className="text-ink" />
               <h3 className="pr-10 font-display text-2xl leading-tight font-extrabold tracking-tight">
                 <span className="eyebrow mb-4 block font-display text-blue-deep">

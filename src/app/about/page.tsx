@@ -4,6 +4,7 @@ import { Faq } from "@/components/about/Faq";
 import { TopoLines } from "@/components/decor/Decor";
 import { pillars } from "@/content/mission";
 import { site } from "@/lib/site";
+import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "About",
@@ -23,29 +24,15 @@ const tilts = ["-rotate-2", "rotate-1", "-rotate-1"];
 export default function AboutPage() {
   return (
     <>
-      {/* About opens light and editorial: ink type on paper, gold highlight. */}
-      <section
-        aria-labelledby="about-heading"
-        className="bg-solar relative overflow-hidden bg-background"
-      >
-        <div className="container-x pt-32 pb-12 sm:pt-36 sm:pb-16">
-          <h1 id="about-heading" className="display-xl rise text-ink">
-            About{" "}
-            <span className="bg-gold px-[0.08em] box-decoration-clone">
-              SoCET
-            </span>
-          </h1>
-          <div className="mt-8 grid gap-8 border-t border-ink pt-8 md:grid-cols-[1fr_2fr]">
-            <span
-              aria-hidden="true"
-              className="hidden h-px w-16 translate-y-3 bg-ink md:block"
-            />
-            <p className="lede rise max-w-2xl text-muted [--rise-delay:120ms]">
-              {site.description}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        id="about-heading"
+        title={
+          <>
+            About <span className="text-gold">SoCET</span>
+          </>
+        }
+        lede={site.description}
+      />
 
       <section
         aria-labelledby="mission-heading"

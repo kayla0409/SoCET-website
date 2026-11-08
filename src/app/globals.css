@@ -53,6 +53,8 @@
   --color-ink: #0b1b2e;
   --color-graphite: #13263d;
   --color-gold: #ffd100;
+  /* Softer gold for large filled areas (whole sections, big cards); full gold stays for accents. */
+  --color-gold-soft: #f3d36b;
   /* UCLA blue for lines, borders and decoration; blue-deep is safe for text on gold or paper. */
   --color-blue: #2774ae;
   --color-blue-deep: #005587;
@@ -99,7 +101,7 @@ body {
 
 @utility display-xl {
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 6vw, 4.75rem);
+  font-size: clamp(1.75rem, 3.1vw, 2.5rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 0.95;
@@ -107,7 +109,7 @@ body {
 
 @utility display-lg {
   font-family: var(--font-display);
-  font-size: clamp(1.875rem, 4.2vw, 3.25rem);
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1;
@@ -115,7 +117,7 @@ body {
 
 @utility display-md {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.8vw, 2.125rem);
+  font-size: clamp(1.3125rem, 1.9vw, 1.625rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.05;
@@ -217,7 +219,13 @@ body {
   background-blend-mode: overlay, normal, normal;
 }
 
-/* Faint, washed-out blue solar-panel grid for light sections. */
+/*
+ * Faint, washed-out solar-panel grid for light sections, about 60% blue and
+ * 40% gold lines. The tile spans two panels each way: one heavy panel edge is
+ * blue and one gold, and of the six light cell lines between them four are
+ * blue and two gold. Gold is a deeper shade at a higher alpha than the blue
+ * so the two read about equally on the light paper.
+ */
 @utility bg-solar {
   position: relative;
   isolation: isolate;
@@ -228,16 +236,53 @@ body {
     inset: 0;
     z-index: -1;
     pointer-events: none;
+    --grid-blue: rgb(39 116 174 / 0.12);
+    --grid-blue-faint: rgb(39 116 174 / 0.06);
+    --grid-gold: rgb(214 158 0 / 0.5);
+    --grid-gold-faint: rgb(214 158 0 / 0.3);
     background-image:
-      linear-gradient(rgb(39 116 174 / 0.12) 1.5px, transparent 1.5px),
-      linear-gradient(90deg, rgb(39 116 174 / 0.12) 1.5px, transparent 1.5px),
-      linear-gradient(rgb(39 116 174 / 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(39 116 174 / 0.06) 1px, transparent 1px);
+      /* Horizontal lines: panel edges every 72px, cell lines every 18px */
+      linear-gradient(
+        var(--grid-blue) 0 1.5px,
+        transparent 1.5px 18px,
+        var(--grid-blue-faint) 18px 19px,
+        transparent 19px 36px,
+        var(--grid-blue-faint) 36px 37px,
+        transparent 37px 54px,
+        var(--grid-gold-faint) 54px 55px,
+        transparent 55px 72px,
+        var(--grid-gold) 72px 73.5px,
+        transparent 73.5px 90px,
+        var(--grid-blue-faint) 90px 91px,
+        transparent 91px 108px,
+        var(--grid-gold-faint) 108px 109px,
+        transparent 109px 126px,
+        var(--grid-blue-faint) 126px 127px,
+        transparent 127px
+      ),
+      /* Vertical lines: panel edges every 120px, cell lines every 30px */
+      linear-gradient(
+        90deg,
+        var(--grid-blue) 0 1.5px,
+        transparent 1.5px 30px,
+        var(--grid-blue-faint) 30px 31px,
+        transparent 31px 60px,
+        var(--grid-blue-faint) 60px 61px,
+        transparent 61px 90px,
+        var(--grid-gold-faint) 90px 91px,
+        transparent 91px 120px,
+        var(--grid-gold) 120px 121.5px,
+        transparent 121.5px 150px,
+        var(--grid-blue-faint) 150px 151px,
+        transparent 151px 180px,
+        var(--grid-gold-faint) 180px 181px,
+        transparent 181px 210px,
+        var(--grid-blue-faint) 210px 211px,
+        transparent 211px
+      );
     background-size:
-      120px 72px,
-      120px 72px,
-      30px 18px,
-      30px 18px;
+      100% 144px,
+      240px 100%;
     transform: perspective(900px) rotateX(48deg) scale(1.6);
     transform-origin: 50% 100%;
     mask-image: radial-gradient(70% 80% at 75% 85%, #000 0%, transparent 75%);
@@ -296,9 +341,14 @@ body {
   }
 }
 
-@keyframes streak-pulse {
+/* The sunlight swells to full brightness at the peak of each pulse. */
+@keyframes sun-pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
   50% {
-    opacity: 0.75;
+    opacity: 1;
   }
 }
 
@@ -326,8 +376,8 @@ body {
     animation: spin 9s linear infinite;
   }
 
-  .streak-glow {
-    animation: streak-pulse 6s ease-in-out infinite;
+  .sun-glow {
+    animation: sun-pulse 6s ease-in-out infinite;
   }
 }
 

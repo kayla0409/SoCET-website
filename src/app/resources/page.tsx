@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Skyline } from "@/components/decor/Decor";
 import type { Resource } from "@/content/resources";
 import { site } from "@/lib/site";
 import { getResources } from "@/server/content";
+import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Resources",
@@ -17,27 +17,15 @@ export default async function ResourcesPage() {
 
   return (
     <>
-      {/* Resources opens on textured concrete with a skyline along the bottom. */}
-      <section
-        aria-labelledby="resources-heading"
-        data-tone="dark"
-        className="tone-dark bg-concrete relative isolate overflow-hidden"
-      >
-        <Skyline className="bottom-0 left-0 -z-10 w-full opacity-40" />
-        <div className="container-x pt-32 pb-12 sm:pt-36 sm:pb-16">
-          <p className="eyebrow rise text-gold">01 — Resources</p>
-          <h1
-            id="resources-heading"
-            className="display-xl rise mt-6 max-w-[12ch] text-paper [--rise-delay:80ms]"
-          >
+      <PageHeader
+        id="resources-heading"
+        title={
+          <>
             Learn, <span className="text-gold">connect</span>, get involved
-          </h1>
-          <p className="lede rise mt-8 text-paper/80 [--rise-delay:160ms]">
-            Links for getting into the club, plus readings from our journal
-            clubs.
-          </p>
-        </div>
-      </section>
+          </>
+        }
+        lede="Links for getting into the club, plus readings from our journal clubs."
+      />
 
       <section
         aria-labelledby="club-resources-heading"

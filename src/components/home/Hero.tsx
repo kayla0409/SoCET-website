@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LightStreak, Skyline } from "@/components/decor/Decor";
+import { Skyline, Sun } from "@/components/decor/Decor";
 import { site } from "@/lib/site";
 
 /** Splits "… at UCLA" so the last line can be set in gold. Text is unchanged. */
@@ -16,7 +16,7 @@ export function Hero() {
       data-tone="dark"
       className="tone-dark bg-concrete relative isolate flex min-h-[100svh] flex-col overflow-hidden"
     >
-      <LightStreak className="-z-10 max-sm:opacity-45" />
+      <Sun className="-z-10 max-sm:opacity-60" />
       {/* Soft scrim behind the copy so it reads over the lighter top of the gradient. */}
       <div
         aria-hidden="true"
@@ -24,7 +24,7 @@ export function Hero() {
       />
       <Skyline className="-z-10" />
 
-      <div className="container-x flex flex-1 flex-col justify-end pt-32 pb-[clamp(140px,18vw,220px)]">
+      <div className="container-x flex flex-1 flex-col justify-center pt-28 pb-[clamp(200px,27vw,340px)] translate-y-6">
         <p className="rise flex flex-wrap gap-2">
           <span className="tag bg-ink/45 text-gold backdrop-blur-sm">
             UCLA student organization
@@ -36,7 +36,7 @@ export function Hero() {
         </p>
         <h1
           id="hero-heading"
-          className="display-xl rise mt-7 text-paper [--rise-delay:80ms] sm:max-w-[15ch]"
+          className="display-xl rise mt-7 text-paper [--rise-delay:80ms] text-balance md:whitespace-nowrap"
         >
           {lead}
           {tail && (
