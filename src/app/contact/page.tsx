@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact/ContactForm";
-import { site, socialLinks } from "@/lib/site";
+import { site } from "@/lib/site";
+import { SocialLinks } from "@/components/SocialLinks";
 import { sendContactMessage } from "@/server/contact";
 import { PageHeader } from "@/components/PageHeader";
 
@@ -47,20 +48,15 @@ export default function ContactPage() {
             </p>
 
             <h3 className="eyebrow mt-9 text-muted">Other ways to reach us</h3>
-            <ul className="mt-4 flex flex-col gap-3">
-              <li>
-                <a href={`mailto:${site.email}`} className="link-u break-all">
-                  {site.email}
-                </a>
-              </li>
-              {socialLinks.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="link-u">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-4">
+              <a href={`mailto:${site.email}`} className="link-u break-all">
+                {site.email}
+              </a>
+            </p>
+            <SocialLinks
+              className="mt-3 flex flex-col gap-3"
+              linkClassName="link-u"
+            />
           </div>
 
           <div className="tone-dark card-dark reveal p-6 sm:p-10">
