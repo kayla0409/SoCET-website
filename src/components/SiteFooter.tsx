@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { site, socialLinks } from "@/lib/site";
+import { site } from "@/lib/site";
+import { SocialLinks } from "./SocialLinks";
 
 export function SiteFooter() {
   return (
@@ -25,16 +26,6 @@ export function SiteFooter() {
                   Contact
                 </Link>
               </li>
-              {socialLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="inline-block py-1 underline-offset-4 transition-colors duration-200 hover:underline"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
               <li>
                 <a
                   href={`mailto:${site.email}`}
@@ -44,6 +35,10 @@ export function SiteFooter() {
                 </a>
               </li>
             </ul>
+            <SocialLinks
+              className="flex flex-col gap-2 text-sm font-medium"
+              linkClassName="inline-block py-1 underline-offset-4 transition-colors duration-200 hover:underline"
+            />
           </div>
         </div>
       </div>

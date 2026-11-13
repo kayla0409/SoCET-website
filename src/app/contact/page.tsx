@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { site } from "@/lib/site";
+import { SocialLinks } from "@/components/SocialLinks";
 import { sendContactMessage } from "@/server/contact";
 import { PageHeader } from "@/components/PageHeader";
 
@@ -71,6 +73,17 @@ export default function ContactPage() {
                 </li>
               ))}
             </ul>
+
+            <h3 className="eyebrow mt-9 text-muted">Other ways to reach us</h3>
+            <p className="mt-4">
+              <a href={`mailto:${site.email}`} className="link-u break-all">
+                {site.email}
+              </a>
+            </p>
+            <SocialLinks
+              className="mt-3 flex flex-col gap-3"
+              linkClassName="link-u"
+            />
           </div>
 
           <div>

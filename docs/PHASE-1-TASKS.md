@@ -93,7 +93,7 @@ Milestone: forms live, domain configured, real content loaded, security/privacy 
 | [ ] | TS-7 | Domain, DNS, HTTPS | 3 | OI | TS-3 | | |
 | [ ] | BE-6 | Phase 1 integration tests and seed data | 3 | | BE-3, BE-4, BE-5 | | |
 | [ ] | IF-4 | Join, newsletter and contact forms (UI, validation, success/error states) | 5 | | BE-5, TS-5, PD-4, PD-6 | | |
-| [ ] | IF-5 | Sticky mobile call-to-action and social links | 2 | | TS-5, PD-1 | | |
+| [ ] | IF-5 | Sticky mobile call-to-action and social links | 2 | | TS-5, PD-1 | Tu | |
 | [ ] | CP-1 | Load events (LA Tech Week event as a past event, after verification) | 2 | OI | IF-3 | | |
 | [ ] | CP-2 | Officer profiles and photos (with written consent) | 3 | OI | IF-3 | | |
 | [ ] | QA-4 | Security and privacy basics. **DUE Dec 8** | 4 | | IF-3, IF-4, DC-4 | | |

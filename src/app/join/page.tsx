@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { PageHeader } from "@/components/PageHeader";
+import { SocialLinks } from "@/components/SocialLinks";
 
 export const metadata: Metadata = {
   title: "Join",
@@ -142,6 +143,11 @@ export default function JoinPage() {
             </a>
             .
           </p>
+          <h3 className="eyebrow mt-9 text-muted">Find us online</h3>
+          <SocialLinks
+            className="mt-4 flex flex-wrap gap-x-7 gap-y-3 text-lg"
+            linkClassName={linkClass}
+          />
         </div>
       </section>
     </>
