@@ -66,7 +66,7 @@ export function HeaderShell({ children }: { children: ReactNode }) {
     <header
       ref={ref}
       data-header-tone={tone}
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-200 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-200 motion-reduce:transition-none ${
         scrolled ? "backdrop-blur-md" : ""
       } ${toneClass}`}
     >

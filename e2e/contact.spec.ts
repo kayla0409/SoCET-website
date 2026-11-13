@@ -39,6 +39,9 @@ test.describe("contact page", () => {
   });
 
   test("works with the keyboard and flags empty fields", async ({ page }) => {
+    // Tabbing scrolls the page, and the header fades its colors as it scrolls.
+    // Reduced motion makes both instant so axe never sees a half-faded header.
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/contact");
 
     // Tab from the top of the page into the Name field.

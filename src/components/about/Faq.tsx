@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { site, socialLinks } from "@/lib/site";
+import { site } from "@/lib/site";
 
 const linkClass = "link-u";
 
-const discord = socialLinks[0];
-const instagram = socialLinks[1];
+const discord = { href: site.discordUrl, label: "Discord" };
+const instagram = { href: site.instagramUrl, label: "Instagram" };
 
 const items: { question: string; answer: ReactNode }[] = [
   {
