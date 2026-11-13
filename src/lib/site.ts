@@ -25,8 +25,8 @@ export const navLinks = [
 ] as const;
 
 export const socialLinks = [
+  { href: site.discordUrl, label: "Discord" },
   { href: site.instagramUrl, label: "Instagram" },
   { href: site.linkedinUrl, label: "LinkedIn" },
   { href: site.linktreeUrl, label: "Linktree" },
-  { href: site.discordUrl, label: "Discord" },
 ] as const;
