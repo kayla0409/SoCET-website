@@ -22,7 +22,7 @@ export const clubResources: Resource[] = [
   {
     title: "Event calendar",
     description:
-      "Speaker series, workshops, journal clubs and site tours, with add-to-calendar links.",
+      "Speaker series, workshops, journal clubs and site tours, with dates, times and RSVP links.",
     href: "/events",
   },
   {
