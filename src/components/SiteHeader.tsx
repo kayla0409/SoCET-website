@@ -31,9 +31,7 @@ export function SiteHeader() {
                   href={link.href}
                   className={
                     link.href === "/join"
-                      ? // On phones the sticky bar (IF-5) is the Join button,
-                        // so here it's a plain link like the others.
-                        "inline-block py-2 underline-offset-[6px] hover:underline md:btn-outline md:px-4 md:py-2 md:no-underline md:hover:bg-current/10"
+                      ? "btn-outline px-4 py-2 hover:bg-current/10"
                       : "inline-block py-2 underline-offset-[6px] hover:underline"
                   }
                 >
