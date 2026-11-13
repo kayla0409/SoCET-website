@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { MailingListForm } from "@/components/home/MailingListForm";
+import { getMailchimpConfig } from "@/lib/mailchimp";
 import { site } from "@/lib/site";
+import { joinMailingList } from "@/server/mailing-list";
 import { PageHeader } from "@/components/PageHeader";
 import { SocialLinks } from "@/components/SocialLinks";
 
@@ -67,15 +70,20 @@ export default function JoinPage() {
                 </span>
                 Fill out the sign-up form
               </h3>
-              <p className="mt-3 mb-8 text-muted">
+              <p className="mt-3 mb-6 text-muted">
                 This signs you up to the club and adds you to the mailing list.
               </p>
-              <a
-                href={site.joinFormUrl}
-                className="btn-gold mt-auto self-start hover:border-paper hover:bg-paper"
-              >
-                Open the sign-up form
-              </a>
+              {/* Until the Mailchimp keys are set, fall back to the Google Form. */}
+              {getMailchimpConfig() ? (
+                <MailingListForm action={joinMailingList} compact />
+              ) : (
+                <a
+                  href={site.joinFormUrl}
+                  className="btn-gold mt-auto self-start hover:border-paper hover:bg-paper"
+                >
+                  Open the sign-up form
+                </a>
+              )}
             </li>
             <li className={`reveal ${darkCard}`}>
               <CardArrow />

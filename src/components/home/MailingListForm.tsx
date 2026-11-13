@@ -12,9 +12,11 @@ interface MailingListFormProps {
     previous: MailingListState,
     formData: FormData,
   ) => Promise<MailingListState>;
+  /** Stack the fields and tighten spacing, for narrow cards. */
+  compact?: boolean;
 }
 
-export function MailingListForm({ action }: MailingListFormProps) {
+export function MailingListForm({ action, compact }: MailingListFormProps) {
   const [state, formAction, pending] = useActionState(action, initialState);
   const id = useId();
   const nameError = state.fieldErrors?.name;
@@ -24,7 +26,7 @@ export function MailingListForm({ action }: MailingListFormProps) {
     return (
       <p
         role="status"
-        className="mt-7 rounded-lg border border-gold/50 px-6 py-4 text-lg font-semibold text-gold"
+        className={`${compact ? "mt-2" : "mt-7"} rounded-lg border border-gold/50 px-6 py-4 text-lg font-semibold text-gold`}
       >
         {state.message}
       </p>
@@ -35,9 +37,9 @@ export function MailingListForm({ action }: MailingListFormProps) {
     <form
       action={formAction}
       noValidate
-      className="mt-7 w-full max-w-xl text-left"
+      className={`${compact ? "mt-2" : "mt-7"} w-full max-w-xl text-left`}
     >
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className={`grid gap-4 ${compact ? "" : "sm:grid-cols-2"}`}>
         <FormField
           id={`${id}-name`}
           name="name"
